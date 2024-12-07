@@ -1,5 +1,5 @@
 let totalSpins = 0;
-let money = 100000;
+let money = 1000;
 
 let jackpotPrize = 300;
 let twoPairPrize = 10;

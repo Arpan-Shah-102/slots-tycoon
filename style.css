@@ -129,7 +129,7 @@ body {
   margin-bottom: 100px;
 }
 
-.upgrades > h1 {
+h1 {
   font-size: 50px;
   text-align: center;
   margin-bottom: 50px;
@@ -146,6 +146,17 @@ body {
   padding: 30px;
   border-radius: 8px;
 }
-.upgrade-container > h2 {
+.upgrade-container > p {
+  margin-bottom: 30px;
+}
+
+.prize-log {
+  margin-top: 50px;
+}
+.prize-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 50px;
 }

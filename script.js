@@ -2,29 +2,28 @@ spin = document.querySelector('.spin');
 autoSpin = document.querySelector('.auto-spin');
 
 terminal = document.querySelector('.terminal');
-moneySpent = document.querySelector('.money-spent > span');
-moneyEarned = document.querySelector('.money-earned > span');
+moneySpent = document.querySelector('.money > span');
+money = 1000
 
 a = document.querySelector('.a');
 b = document.querySelector('.b');
 c = document.querySelector('.c');
 
+body = document.querySelector('body');
+colorThemes = document.querySelector('.color-themes');
+
 slotSound = new Audio('./assets/slot-spin-sound.mp3');
 slotPayout = new Audio('./assets/slot-payout.mp3');
+jackpot = new Audio('./assets/jackpot.mp3');
 
-spin.addEventListener("click", function() {
-  spinSlot(1);
-});
+spin.addEventListener("click", function() {spinSlot(1, false)});
 autoSpin.addEventListener("click", function() {
   try {
     numberOfItereations = Number(prompt("How many times would you like to spin?"));
     if (isNaN(numberOfItereations) || numberOfItereations <= 0) {
       throw new Error("Invalid number of iterations. Please enter a positive number.");
     }
-    if (numberOfItereations == 6511411297110) {
-      terminal.innerText = ":D Thanks for finding the creator!";
-    }
-    spinSlot(numberOfItereations);
+    spinSlot(numberOfItereations, true);
   }
   catch (err) {
     alert("You did not enter a valid number. Please try again.");
@@ -32,12 +31,15 @@ autoSpin.addEventListener("click", function() {
   }
 });
 
-symbols = ['🍒','💎','🔔','🍉','⭐','🍇','7️⃣','🥇','🥈','🥉'];
-moneySpentVar = 0;
-moneyEarnedVar = 0;
-
-function spinSlot(iterations) {
+symbols = ['🍒','💎','🔔','🍉','⭐','🍇','7️⃣','🥇','🥈','🥉', '🍋', '🪙', '🥭'];
+function spinSlot(iterations, autoSpinOn) {
   let completedSpins = 0;
+  let multiplier;
+  if (autoSpinOn) {
+    multiplier = 0.5;
+  } else {
+    multiplier = 1
+  }
   for (let j = 0; j < iterations; j++) {
     setTimeout(function () {
       slotSound.play();
@@ -45,8 +47,8 @@ function spinSlot(iterations) {
       spin.disabled = true;
       autoSpin.disabled = true;
 
-      moneySpentVar += 10;
-      moneySpent.innerText = moneySpentVar;
+      money -= 10;
+      moneySpent.innerText = money;
 
       let s1;
       let s2;
@@ -61,19 +63,19 @@ function spinSlot(iterations) {
           a.innerText = s1;
           b.innerText = s2;
           c.innerText = s3;
-        }, 100 * i);
+        }, 100 * i * multiplier);
       }
       setTimeout(function() {
-        if (a == b && b == c) {
-          moneyEarnedVar += 300;
+        if (s1 == s2 && s2 == s3) {
+          money += 300
           terminal.innerText = "Congratulations! You won $300!";
-          moneyEarned.innerText = moneyEarnedVar;
-          slotPayout.play();
+          moneySpent.innerText = money;
+          jackpot.play();
         }
         else if (s1 == s2 || s1 == s3 || s2 == s3) {
-          moneyEarnedVar += 10;
+          money += 10
           terminal.innerText = "Congratulations! You won $10!";
-          moneyEarned.innerText = moneyEarnedVar;
+          moneySpent.innerText = money;
           slotPayout.play();
         }
         else {
@@ -85,7 +87,9 @@ function spinSlot(iterations) {
           spin.disabled = false;
           autoSpin.disabled = false;
         }
-      }, 1000);
-    }, 1250 * j);
+      }, 1000 * multiplier);
+    }, 1250 * j * multiplier);
   }
 }
+
+colorThemes.addEventListener("click", function () {body.classList.toggle("dark");});

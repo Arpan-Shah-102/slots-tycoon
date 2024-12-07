@@ -1,9 +1,6 @@
+/* Presets */
 * {
   font-family: monospace, serif, sans-serif;
-}
-body {
-  background-color: black;
-  color: white;
 }
 button {
   border-radius: 8px;
@@ -21,9 +18,79 @@ button {
     transform: translateY(4px);
   }
 }
+body {
+  transition: all 0.5s;
+}
+.dark {
+  background-color: black;
+  color: white;
+  transition: all 0.5s;
+}
 
+.primary {
+  background-color: goldenrod;
+  color: black;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    &:hover, &:active {
+      transform: none;
+      background-color: goldenrod;
+      color: black;
+    }
+  }
+  &:hover {
+    background-color: transparent;
+    color: goldenrod;
+  }
+  &:active {
+    background-color: goldenrod;
+    color: black;
+  }
+}
+.secondary {
+  background-color: transparent;
+  color: goldenrod;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    
+    &:hover, &:active {
+      transform: none;
+      background-color: transparent;
+      color: goldenrod;
+    }
+  }
+  &:hover {
+    background-color: goldenrod;
+    color: black;
+  }
+  &:active {
+    background-color: transparent;
+    color: goldenrod;
+  }
+}
+.teritry {
+  background-color: transparent;
+  color: grey;
+  border-color: gray;
+
+  &:hover {
+    border-color: goldenrod;
+    color: goldenrod;
+  }
+  &:active {
+    background-color: goldenrod;
+    color: black;
+  }
+}
+
+/* Extras */
 .holder {
-  height: 95vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,55 +114,38 @@ button {
   padding-bottom: 10px;
 }
 
-.spin {
-  background-color: goldenrod;
-  color: black;
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-
-    &:hover, &:active {
-      transform: none;
-      background-color: goldenrod;
-      color: black;
-    }
-  }
-  &:hover {
-    background-color: black;
-    color: goldenrod;
-  }
-  &:active {
-    background-color: goldenrod;
-    color: black;
-  }
-}
-.auto-spin {
-  background-color: black;
-  color: goldenrod;
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    
-    &:hover, &:active {
-      transform: none;
-      background-color: black;
-      color: goldenrod;
-    }
-  }
-  &:hover {
-    background-color: goldenrod;
-    color: black;
-  }
-  &:active {
-    background-color: black;
-    color: goldenrod;
-  }
-}
 .money {
   margin: 20px 0px;
   & > p {
     margin: 0px;
   }
+}
+
+.functions {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
+}
+
+.upgrades > h1 {
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+.upg-box {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
+}
+.upgrade-container {
+  border: 2px solid goldenrod;
+  padding: 30px;
+  border-radius: 8px;
+}
+.upgrade-container > h2 {
+  margin-bottom: 50px;
 }

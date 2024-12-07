@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slot Machine</title>
+    <title>Slots Tycoon</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="./assets/slot-machine-icon.png">
   </head>
 
-  <body>
+  <body class="dark">
     <div class="holder">
       <div class="img-div">
         <p class="number a">7️⃣</p>
@@ -16,13 +16,48 @@
         <p class="number c">7️⃣</p>
       </div>
       <div class="info">
-        <button class="spin">Spin</button>
-        <button class="auto-spin">Auto Spin</button>
+        <button class="primary spin">Spin</button>
+        <button class="secondary auto-spin">Auto Spin</button>
         <div class="money">
           <p class="terminal">Spin to win!</p>
-          <p class="money-spent">Money Spent: $<span>0</span></p>
-          <p class="money-earned">Money Earned: $<span>0</span></p>
+          <p class="money">Money: $<span>1000</span></p>
         </div>
+      </div>
+    </div>
+
+    <div class="functions">
+      <button class="teritry color-themes">Switch Color Theme</button>
+      <button class="teritry restart">Restart Game</button>
+      <button class="teritry load">Load Game</button>
+      <button class="teritry save">Save Game</button>
+    </div>
+
+    <div class="upgrades">
+      <h1>Upgrades</h1>
+      <div class="upg-box">
+        <div class="upgrade-container">
+          <h2>Upgrade Luck</h2>
+          <p>Lv. 1 > Lv. 2</p>
+          <button class="secondary luck">$1000</button>
+        </div>
+        <div class="upgrade-container">
+          <h2>Upgrade Income</h2>
+          <p>Lv. 1 > Lv. 2</p>
+          <button class="secondary income">$1000</button>
+        </div>
+        <div class="upgrade-container">
+          <h2>Upgrade Spin</h2>
+          <p>Lv. 1 > Lv. 2</p>
+          <button class="secondary spin">$1000</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="prize-log">
+      <h1>Prize Log</h1>
+      <div class="prize-container">
+        <p>Spin 101 - $300 - 🍒 🍒 🍒</p>
+        <p>Spin 82 - $10 - 🍒 🍉 🍒</p>
       </div>
     </div>
 

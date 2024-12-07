@@ -37,6 +37,7 @@ let colorThemes = document.querySelector('.color-themes');
 const slotSound = new Audio('./assets/slot-spin-sound.mp3');
 const slotPayout = new Audio('./assets/slot-payout.mp3');
 const jackpot = new Audio('./assets/jackpot.mp3');
+const upgradeSound = new Audio('./assets/upgrade-purchased.mp3');
 
 let prizeLog = document.querySelector('.prize-container');
 
@@ -149,6 +150,7 @@ upgradeLuck.addEventListener("click", function() {
     if (upgradeLuckLevel < 9) {
       money -= upgradeLuckPrice;
       moneySpent.innerText = Math.floor(money);
+      upgradeSound.play();
 
       upgradeLuckLevel += 1;
       upgradeLuckPrice += 500;
@@ -167,6 +169,7 @@ upgradeIncome.addEventListener("click", function() {
     if (upgradeIncomeLevel < 9) {
       money -= upgradeIncomePrice;
       moneySpent.innerText = Math.floor(money);
+      upgradeSound.play();
       jackpotPrize *= 1.5;
       twoPairPrize *= 1.5;
 
@@ -187,6 +190,7 @@ upgradeSpin.addEventListener("click", function() {
     if (upgradeSpinLevel < 9) {
       money -= upgradeSpinPrice;
       moneySpent.innerText = Math.floor(money);
+      upgradeSound.play();
       addedBonus = addedBonus + 1.25;
 
       console.log(addedBonus);

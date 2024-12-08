@@ -1,9 +1,9 @@
 let totalSpins = 0;
-let money = 1000;
+let money = 2000;
 
 let jackpotPrize = 300;
-let twoPairPrize = 10;
-let addedBonus = 0;
+let twoPairPrize = 15;
+let addedBonus = 1;
 
 let upgradeLuck = document.querySelector(".luck");
 let upgradeIncome = document.querySelector(".income");
@@ -69,7 +69,7 @@ autoSpin.addEventListener("click", function() {
   }
 });
 
-symbols = ['7️⃣','🍋','🪙','🥭','🔔','🍉','⭐','🍇','🥇','🥈','🥉','🍒','💎'];
+symbols = ['🍋','🪙','🥭','🔔','🍉','⭐','🍇','🥇','🥈','🥉','🍒','💎','7️⃣'];
 function spinSlot(iterations, autoSpinOn) {
   let completedSpins = 0;
   let multiplier;
@@ -86,8 +86,10 @@ function spinSlot(iterations, autoSpinOn) {
       autoSpin.disabled = true;
 
       money -= 10;
-      money += addedBonus;
-      moneySpent.innerText = Math.floor(money);
+      if (addedBonus >= 1.25) {
+        money += addedBonus;
+      }
+      moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
       let s1;
       let s2;
@@ -112,19 +114,19 @@ function spinSlot(iterations, autoSpinOn) {
         if (s1 == s2 && s2 == s3) {
           money += jackpotPrize;
           moneyEarned += jackpotPrize;
-          terminal.innerText = "Congratulations! You won $300!";
-          moneySpent.innerText = Math.floor(money);
+          terminal.innerText = `Congratulations! You won $${moneyEarned.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}!`;
+          moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
           jackpot.play();
-          tag.innerText = `Spin ${totalSpins} - $${moneyEarned} - ${s1} ${s2} ${s3}`;
+          tag.innerText = `Spin ${totalSpins} - $${moneyEarned.toFixed(2)} - ${s1} ${s2} ${s3}`;
           prizeLog.insertBefore(tag, prizeLog.firstChild);
         }
         else if (s1 == s2 || s1 == s3 || s2 == s3) {
           money += twoPairPrize;
           moneyEarned += twoPairPrize;
-          terminal.innerText = "Congratulations! You won $10!";
-          moneySpent.innerText = Math.floor(money);
+          terminal.innerText = `You won $${moneyEarned.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}!`;
+          moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
           slotPayout.play();
-          tag.innerText = `Spin ${totalSpins} - $${moneyEarned} - ${s1} ${s2} ${s3}`;
+          tag.innerText = `Spin ${totalSpins} - $${moneyEarned.toFixed(2)} - ${s1} ${s2} ${s3}`;
           prizeLog.insertBefore(tag, prizeLog.firstChild);
         }
         else {
@@ -147,15 +149,19 @@ colorThemes.addEventListener("click", function () {
 
 upgradeLuck.addEventListener("click", function() {
   if (money >= upgradeLuckPrice) {
-    if (upgradeLuckLevel < 9) {
+    if (upgradeLuckLevel < 10) {
       money -= upgradeLuckPrice;
-      moneySpent.innerText = Math.floor(money);
+      moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       upgradeSound.play();
+      symbols.splice(0, 1);
 
       upgradeLuckLevel += 1;
-      upgradeLuckPrice += 500;
-      upgradeLuckContainer.querySelector('p').innerText = `Lv. ${upgradeLuckLevel} > Lv. ${upgradeLuckLevel + 1}`;
-      upgradeLuck.innerText = `$${upgradeLuckPrice}`;
+      if (upgradeLuckLevel < 10) {
+        upgradeLuckContainer.querySelector('p').innerText = `Lv. ${upgradeLuckLevel} > Lv. ${upgradeLuckLevel + 1}`;
+      } else {
+        upgradeLuckContainer.querySelector('p').innerText = `Max Level (Lv. 10)`;
+        upgradeLuck.disabled = true;
+      }
     } else {
       upgradeLuckContainer.querySelector('p').innerText = `Max Level (Lv. 10)`;
       upgradeLuck.disabled = true;
@@ -166,17 +172,20 @@ upgradeLuck.addEventListener("click", function() {
 });
 upgradeIncome.addEventListener("click", function() {
   if (money >= upgradeIncomePrice) {
-    if (upgradeIncomeLevel < 9) {
+    if (upgradeIncomeLevel < 10) {
       money -= upgradeIncomePrice;
-      moneySpent.innerText = Math.floor(money);
+      moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       upgradeSound.play();
-      jackpotPrize *= 1.5;
-      twoPairPrize *= 1.5;
+      jackpotPrize *= 1.25;
+      twoPairPrize *= 1.25;
 
       upgradeIncomeLevel += 1;
-      upgradeIncomePrice += 500;
-      upgradeIncomeContainer.querySelector('p').innerText = `Lv. ${upgradeIncomeLevel} > Lv. ${upgradeIncomeLevel + 1}`;
-      upgradeIncome.innerText = `$${upgradeIncomePrice}`;
+      if (upgradeIncomeLevel < 10) {
+        upgradeIncomeContainer.querySelector('p').innerText = `Lv. ${upgradeIncomeLevel} > Lv. ${upgradeIncomeLevel + 1}`;
+      } else {
+        upgradeIncomeContainer.querySelector('p').innerText = `Max Level (Lv. 10)`;
+        upgradeIncome.disabled = true;
+      }
     } else {
       upgradeIncomeContainer.querySelector('p').innerText = `Max Level (Lv. 10)`;
       upgradeIncome.disabled = true;
@@ -187,18 +196,19 @@ upgradeIncome.addEventListener("click", function() {
 });
 upgradeSpin.addEventListener("click", function() {
   if (money >= upgradeSpinPrice) {
-    if (upgradeSpinLevel < 9) {
+    if (upgradeSpinLevel < 10) {
       money -= upgradeSpinPrice;
-      moneySpent.innerText = Math.floor(money);
+      moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       upgradeSound.play();
-      addedBonus = addedBonus + 1.25;
-
-      console.log(addedBonus);
+      addedBonus *= 1.25;
 
       upgradeSpinLevel += 1;
-      upgradeSpinPrice += 500;
-      upgradeSpinContainer.querySelector('p').innerText = `Lv. ${upgradeSpinLevel} > Lv. ${upgradeSpinLevel + 1}`;
-      upgradeSpin.innerText = `$${upgradeSpinPrice}`;
+      if (upgradeSpinLevel < 10) {
+        upgradeSpinContainer.querySelector('p').innerText = `Lv. ${upgradeSpinLevel} > Lv. ${upgradeSpinLevel + 1}`;
+      } else {
+        upgradeSpinContainer.querySelector('p').innerText = `Max Level (Lv. 10)`;
+        upgradeSpin.disabled = true;
+      }
     } else {
       upgradeSpinContainer.querySelector('p').innerText = `Max Level (Lv. 10)`;
       upgradeSpin.disabled = true;

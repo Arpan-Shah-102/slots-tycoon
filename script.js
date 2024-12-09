@@ -1,5 +1,5 @@
 let totalSpins = 0;
-let money = 2000;
+let money = 2500;
 
 let jackpotPrize = 300;
 let twoPairPrize = 15;
@@ -40,6 +40,9 @@ const jackpot = new Audio('./assets/jackpot.mp3');
 const upgradeSound = new Audio('./assets/upgrade-purchased.mp3');
 
 let prizeLog = document.querySelector('.prize-container');
+
+let gameOverScreen = document.querySelector('.game-over-screen');
+let gameWonScreen = document.querySelector('.game-won-screen');
 
 spin.addEventListener("click", function() {
   try {
@@ -139,12 +142,17 @@ function spinSlot(iterations, autoSpinOn) {
           autoSpin.disabled = false;
         }
       }, 1000 * multiplier);
+      gameOverCheck();
+      if (gameOverScreen.style.display == "flex" || gameWonScreen.style.display == "flex") {
+        return;
+      }
     }, 1250 * j * multiplier);
   }
 }
 
 colorThemes.addEventListener("click", function () {
   body.classList.toggle("dark");
+  gameOverCheck();
 });
 
 upgradeLuck.addEventListener("click", function() {
@@ -169,6 +177,7 @@ upgradeLuck.addEventListener("click", function() {
   } else {
     alert("You don't have enough money to upgrade this feature.");
   }
+  gameOverCheck();
 });
 upgradeIncome.addEventListener("click", function() {
   if (money >= upgradeIncomePrice) {
@@ -193,6 +202,7 @@ upgradeIncome.addEventListener("click", function() {
   } else {
     alert("You don't have enough money to upgrade this feature.");
   }
+  gameOverCheck();
 });
 upgradeSpin.addEventListener("click", function() {
   if (money >= upgradeSpinPrice) {
@@ -216,4 +226,28 @@ upgradeSpin.addEventListener("click", function() {
   } else {
     alert("You don't have enough money to upgrade this feature.");
   }
+  gameOverCheck();
 });
+
+function upgradeSomething() {
+
+}
+
+function gameOverCheck() {
+  if (upgradeSpinLevel == 10 && upgradeIncomeLevel == 10 && upgradeLuckLevel == 10) {
+    setTimeout(function () {
+      alert("You're got all of the upgrades I see");
+    }, 1000);
+    setTimeout(function () {
+      gameWonScreen.style.display = "flex";
+    }, 2000);
+  }
+  else if (money < 10) {
+    setTimeout(function () {
+      alert("You're out of money I see");
+    }, 500);
+    setTimeout(function () {
+      gameOverScreen.style.display = "flex";
+    }, 1000);
+  }
+}

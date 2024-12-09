@@ -1,0 +1,36 @@
+// This is how to use cookies according to bard:
+
+// To save data using JavaScript cookies, you can use the document.cookie property:
+// Setting a Cookie:
+
+// JavaScript:
+document.cookie = "username=John Doe; expires=Thu, 18 Dec 2024 12:00:00 UTC; path=/";
+
+// Key-Value Pair: The cookie is set as a key-value pair, like username=John Doe.
+// Expiration Date (Optional): The expires attribute sets the cookie's expiration date in UTC time. If not specified, the cookie expires when the browser closes.
+// Path (Optional): The path attribute specifies the URL path for which the cookie is valid. By default, it's the current path.
+
+// Reading a Cookie:
+
+// JavaScript:
+const allCookies = document.cookie;
+const cookiesArray = allCookies.split(';');
+
+for (let i = 0; i < cookiesArray.length; i++) {
+  const cookie = cookiesArray[i].trim();
+  if (cookie.startsWith("username=")) {
+    const username = cookie.substring("username=".length, cookie.length);
+    console.log("Username:", username);
+  }
+}
+
+// Deleting a Cookie:
+
+// JavaScript:
+document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+
+// To delete a cookie, set its expiration date to a past date. 
+// Important Considerations:
+// Cookie Size: Cookies have a size limit (around 4KB).
+// Security: Cookies are not secure for sensitive data. Consider using localStorage or sessionStorage for sensitive information.
+// User Privacy: Be transparent with users about how you use cookies.

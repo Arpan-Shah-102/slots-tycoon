@@ -11,7 +11,7 @@ Check it out at https://arpan-shah-102.github.io/slots-tycoon/ <br/>
 
 ### V1.6
 Added more background colors <br/>
-Added more upgrades while devaluing them and increasing their price <br/>\
+Added more upgrades while devaluing them and increasing their price <br/>
 Added the nft shop <br/>
 
 ### Future Updates

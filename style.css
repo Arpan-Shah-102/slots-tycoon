@@ -170,7 +170,6 @@ h1 {
   overflow-x: hidden;
   overflow-y: hidden;
   text-align: center;
-  opacity: 0.5;
   
   position: fixed;
   top: -1px;
@@ -182,8 +181,8 @@ h1 {
   align-items: center;
 }
 .game-over-screen {
-  background-color: red;
+  background-color: rgba(255, 0, 0, 0.75);
 }
 .game-won-screen {
-  background-color: green;
+  background-color: rgba(0, 128, 0, 0.75);
 }

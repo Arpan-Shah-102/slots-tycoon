@@ -18,3 +18,6 @@ They will probably come out in future update though, I just need to learn more. 
 1. Saving Data will cookies will most likely be added. <br/>
 2. The javascript code will be cleaned up. <br/>
 3. The commented buttons in the HTML will probably be added. <br/>
+4. Change background colors
+5. Loans, interst, banks
+6. Gambling Minions

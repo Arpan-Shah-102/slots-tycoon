@@ -1,5 +1,5 @@
 let totalSpins = 0;
-let money = 25000;
+let money = 5000;
 
 let jackpotPrize = 300;
 let twoPairPrize = 15;
@@ -42,6 +42,8 @@ const jackpot = new Audio('./assets/jackpot.mp3');
 const upgradeSound = new Audio('./assets/upgrade-purchased.mp3');
 const winAudio = new Audio('./assets/win.mp3');
 const loseAudio = new Audio('./assets/lose.mp3');
+const nftPurchase = new Audio('./assets/shop.mp3');
+const changBgColor = new Audio('./assets/change-bg-color.mp3');
 
 let prizeLog = document.querySelector('.prize-container');
 
@@ -164,6 +166,7 @@ colorThemes.addEventListener("click", function () {
     pointer = 0;
   }
   body.classList.add(colors[pointer]);
+  changBgColor.play();
   gameOverCheck();
 });
 
@@ -279,25 +282,26 @@ playAgain.addEventListener('click', function () {
   playAgain.style.display = 'none';
 });
 
-// const itemShopPrice = [10, 500, 1000, 50, 50, 50, 200, 100, 20, 150, 3000, 500, 1000, 250, 500, 10000, 5000, 2000];
-// const itemShopItems = ["💩", "👽", "🐲", "😺", "🐶", "🐔", "🐮", "🐷", "🐰", "🐵", "🤖", "💀", "🦴", "👄", "👁️", "🧠", "🫀", "🫁"];
+const itemShopPrice = [10, 500, 1000, 50, 50, 50, 200, 100, 20, 150, 3000, 500, 1000, 250, 500, 10000, 5000, 2000];
+const itemShopItems = ["💩", "👽", "🐲", "😺", "🐶", "🐔", "🐮", "🐷", "🐰", "🐵", "🤖", "💀", "🦴", "👄", "👁️", "🧠", "🫀", "🫁"];
 
-// const buttons = document.querySelectorAll('.items > div > button');
-// const colectibles = document.querySelector('.colectibles');
+const buttons = document.querySelectorAll('.items > div > button');
+const colectibles = document.querySelector('.collectibles');
 
-// buttons.forEach((button, index) => {
-//   button.addEventListener('click', function() {
-//     console.log(`Button ${index + 1} clicked`);
-//     console.log(itemShopPrice[index]);
-//     console.log(itemShopItems[index]);
+buttons.forEach((button, index) => {
+  button.addEventListener('click', function() {
+    if (money >= itemShopPrice[index]) {
+      money -= itemShopPrice[index];
+      moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      button.disabled = true;
+      nftPurchase.play();
 
-//     let colectibleData = document.createElement('p');
-//     colectibleData.innerText = itemShopItems[index];
-
-//     if (money >= itemShopPrice[index]) {
-//       colectibleData.innerText = itemShopItems[index];
-//       colectibles.appendChild(colectibleData);
-//     }
-//     button.disabled = true;
-//   });
-// });
+      let colectibleData = document.createElement('h1');
+      colectibleData.innerText = itemShopItems[index];
+      colectibles.appendChild(colectibleData);
+    } else {
+      alert("You don't have enough money to buy this NFT.");
+    }
+    gameOverCheck();
+  });
+});

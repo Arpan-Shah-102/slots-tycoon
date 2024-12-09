@@ -9,11 +9,10 @@ This is the next best hit on the market! <br/>
 <br/>
 Check it out at https://arpan-shah-102.github.io/slots-tycoon/ <br/>
 
-### V1.3
-<br/>
+### V1.6
 Added more background colors <br/>
 Added more upgrades while devaluing them and increasing their price <br/>\
-Added basic sturcture for the shop <br/>
+Added the nft shop <br/>
 
 ### Future Updates
 1. Saving Data will cookies will most likely be added.
@@ -24,8 +23,8 @@ Added basic sturcture for the shop <br/>
 
 5. Loans, interst, banks
 6. Gambling Minions
-7. Shop (Flex how much money you have by buying online collectibles)
 
+7. Shop (Flex how much money you have by buying online collectibles) [FINISHED]
 8. Add more upgrades, increase their price, and decrease their value [FINISHED]
 
 9. Add money goal

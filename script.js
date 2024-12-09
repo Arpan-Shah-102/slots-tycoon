@@ -38,6 +38,8 @@ const slotSound = new Audio('./assets/slot-spin-sound.mp3');
 const slotPayout = new Audio('./assets/slot-payout.mp3');
 const jackpot = new Audio('./assets/jackpot.mp3');
 const upgradeSound = new Audio('./assets/upgrade-purchased.mp3');
+const winAudio = new Audio('./assets/win.mp3');
+const loseAudio = new Audio('./assets/lose.mp3');
 
 let prizeLog = document.querySelector('.prize-container');
 
@@ -239,6 +241,7 @@ function gameOverCheck() {
       alert("You're got all of the upgrades I see");
     }, 1000);
     setTimeout(function () {
+      winAudio.play();
       gameWonScreen.style.display = "flex";
     }, 2000);
   }
@@ -247,6 +250,7 @@ function gameOverCheck() {
       alert("You're out of money I see");
     }, 500);
     setTimeout(function () {
+      loseAudio.play();
       gameOverScreen.style.display = "flex";
     }, 1000);
   }

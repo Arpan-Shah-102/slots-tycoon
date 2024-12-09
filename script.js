@@ -1,5 +1,5 @@
 let totalSpins = 0;
-let money = 2500;
+let money = 25000;
 
 let jackpotPrize = 300;
 let twoPairPrize = 15;
@@ -33,6 +33,8 @@ let c = document.querySelector('.c');
 
 let body = document.querySelector('body');
 let colorThemes = document.querySelector('.color-themes');
+const colors = ['black', 'white', 'red', 'green', 'teal', 'blue', 'purple', 'red-orange', 'green-yellow', 'blue-purple'];
+let pointer = 0;
 
 const slotSound = new Audio('./assets/slot-spin-sound.mp3');
 const slotPayout = new Audio('./assets/slot-payout.mp3');
@@ -45,6 +47,9 @@ let prizeLog = document.querySelector('.prize-container');
 
 let gameOverScreen = document.querySelector('.game-over-screen');
 let gameWonScreen = document.querySelector('.game-won-screen');
+
+let playAgain = document.querySelector('.coninue-playing');
+let finsihedMessageShown = false;
 
 spin.addEventListener("click", function() {
   try {
@@ -74,7 +79,7 @@ autoSpin.addEventListener("click", function() {
   }
 });
 
-symbols = ['🍋','🪙','🥭','🔔','🍉','⭐','🍇','🥇','🥈','🥉','🍒','💎','7️⃣'];
+symbols = ['🍋','🪙','🥭','🔔','🍉','⭐','🍇', '🎰', '👑', '💰', '🌟 ', '💵', '🍀','🥇','🥈','🥉','🍒','💎','7️⃣'];
 function spinSlot(iterations, autoSpinOn) {
   let completedSpins = 0;
   let multiplier;
@@ -153,27 +158,35 @@ function spinSlot(iterations, autoSpinOn) {
 }
 
 colorThemes.addEventListener("click", function () {
-  body.classList.toggle("dark");
+  body.classList.remove(colors[pointer]);
+  pointer++;
+  if (pointer >= colors.length) {
+    pointer = 0;
+  }
+  body.classList.add(colors[pointer]);
   gameOverCheck();
 });
 
 upgradeLuck.addEventListener("click", function() {
   if (money >= upgradeLuckPrice) {
-    if (upgradeLuckLevel < 10) {
+    if (upgradeLuckLevel < 15) {
       money -= upgradeLuckPrice;
       moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       upgradeSound.play();
       symbols.splice(0, 1);
 
       upgradeLuckLevel += 1;
-      if (upgradeLuckLevel < 10) {
+      upgradeLuckPrice += 10;
+      upgradeLuck.innerText = `$${upgradeLuckPrice}`;
+
+      if (upgradeLuckLevel < 15) {
         upgradeLuckContainer.querySelector('p').innerText = `Lv. ${upgradeLuckLevel} > Lv. ${upgradeLuckLevel + 1}`;
       } else {
-        upgradeLuckContainer.querySelector('p').innerText = `Max Level (Lv. 10)`;
+        upgradeLuckContainer.querySelector('p').innerText = `Max Level (Lv. 15)`;
         upgradeLuck.disabled = true;
       }
     } else {
-      upgradeLuckContainer.querySelector('p').innerText = `Max Level (Lv. 10)`;
+      upgradeLuckContainer.querySelector('p').innerText = `Max Level (Lv. 15)`;
       upgradeLuck.disabled = true;
     }
   } else {
@@ -183,22 +196,25 @@ upgradeLuck.addEventListener("click", function() {
 });
 upgradeIncome.addEventListener("click", function() {
   if (money >= upgradeIncomePrice) {
-    if (upgradeIncomeLevel < 10) {
+    if (upgradeIncomeLevel < 15) {
       money -= upgradeIncomePrice;
       moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       upgradeSound.play();
-      jackpotPrize *= 1.25;
-      twoPairPrize *= 1.25;
+      jackpotPrize *= 1.15;
+      twoPairPrize *= 1.15;
 
       upgradeIncomeLevel += 1;
-      if (upgradeIncomeLevel < 10) {
+      upgradeIncomePrice += 10;
+      upgradeIncome.innerText = `$${upgradeIncomePrice}`;
+
+      if (upgradeIncomeLevel < 15) {
         upgradeIncomeContainer.querySelector('p').innerText = `Lv. ${upgradeIncomeLevel} > Lv. ${upgradeIncomeLevel + 1}`;
       } else {
-        upgradeIncomeContainer.querySelector('p').innerText = `Max Level (Lv. 10)`;
+        upgradeIncomeContainer.querySelector('p').innerText = `Max Level (Lv. 15)`;
         upgradeIncome.disabled = true;
       }
     } else {
-      upgradeIncomeContainer.querySelector('p').innerText = `Max Level (Lv. 10)`;
+      upgradeIncomeContainer.querySelector('p').innerText = `Max Level (Lv. 15)`;
       upgradeIncome.disabled = true;
     }
   } else {
@@ -208,21 +224,24 @@ upgradeIncome.addEventListener("click", function() {
 });
 upgradeSpin.addEventListener("click", function() {
   if (money >= upgradeSpinPrice) {
-    if (upgradeSpinLevel < 10) {
+    if (upgradeSpinLevel < 15) {
       money -= upgradeSpinPrice;
       moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       upgradeSound.play();
-      addedBonus *= 1.25;
+      addedBonus *= 1.15;
 
       upgradeSpinLevel += 1;
-      if (upgradeSpinLevel < 10) {
+      upgradeSpinPrice += 10;
+      upgradeSpin.innerText = `$${upgradeSpinPrice}`;
+
+      if (upgradeSpinLevel < 15) {
         upgradeSpinContainer.querySelector('p').innerText = `Lv. ${upgradeSpinLevel} > Lv. ${upgradeSpinLevel + 1}`;
       } else {
-        upgradeSpinContainer.querySelector('p').innerText = `Max Level (Lv. 10)`;
+        upgradeSpinContainer.querySelector('p').innerText = `Max Level (Lv. 15)`;
         upgradeSpin.disabled = true;
       }
     } else {
-      upgradeSpinContainer.querySelector('p').innerText = `Max Level (Lv. 10)`;
+      upgradeSpinContainer.querySelector('p').innerText = `Max Level (Lv. 15)`;
       upgradeSpin.disabled = true;
     }
   } else {
@@ -231,27 +250,54 @@ upgradeSpin.addEventListener("click", function() {
   gameOverCheck();
 });
 
-function upgradeSomething() {
-
-}
-
 function gameOverCheck() {
-  if (upgradeSpinLevel == 10 && upgradeIncomeLevel == 10 && upgradeLuckLevel == 10) {
-    setTimeout(function () {
-      alert("You're got all of the upgrades I see");
-    }, 1000);
-    setTimeout(function () {
-      winAudio.play();
-      gameWonScreen.style.display = "flex";
-    }, 2000);
-  }
-  else if (money < 10) {
-    setTimeout(function () {
-      alert("You're out of money I see");
-    }, 500);
-    setTimeout(function () {
-      loseAudio.play();
-      gameOverScreen.style.display = "flex";
-    }, 1000);
+  if (!finsihedMessageShown) {
+    if (upgradeSpinLevel == 15 && upgradeIncomeLevel == 15 && upgradeLuckLevel == 15) {
+      setTimeout(function () {
+        alert("You're got all of the upgrades I see");
+      }, 1000);
+      setTimeout(function () {
+        winAudio.play();
+        gameWonScreen.style.display = "flex";
+        finsihedMessageShown = true;
+      }, 2000);
+    }
+    else if (money < 10) {
+      setTimeout(function () {
+        alert("You're out of money I see");
+      }, 500);
+      setTimeout(function () {
+        loseAudio.play();
+        gameOverScreen.style.display = "flex";
+      }, 1000);
+    }
   }
 }
+
+playAgain.addEventListener('click', function () {
+  gameWonScreen.style.position = "static";
+  playAgain.style.display = 'none';
+});
+
+// const itemShopPrice = [10, 500, 1000, 50, 50, 50, 200, 100, 20, 150, 3000, 500, 1000, 250, 500, 10000, 5000, 2000];
+// const itemShopItems = ["💩", "👽", "🐲", "😺", "🐶", "🐔", "🐮", "🐷", "🐰", "🐵", "🤖", "💀", "🦴", "👄", "👁️", "🧠", "🫀", "🫁"];
+
+// const buttons = document.querySelectorAll('.items > div > button');
+// const colectibles = document.querySelector('.colectibles');
+
+// buttons.forEach((button, index) => {
+//   button.addEventListener('click', function() {
+//     console.log(`Button ${index + 1} clicked`);
+//     console.log(itemShopPrice[index]);
+//     console.log(itemShopItems[index]);
+
+//     let colectibleData = document.createElement('p');
+//     colectibleData.innerText = itemShopItems[index];
+
+//     if (money >= itemShopPrice[index]) {
+//       colectibleData.innerText = itemShopItems[index];
+//       colectibles.appendChild(colectibleData);
+//     }
+//     button.disabled = true;
+//   });
+// });

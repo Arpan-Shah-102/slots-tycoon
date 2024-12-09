@@ -18,11 +18,58 @@ button {
     transform: translateY(4px);
   }
 }
+
 body {
+  background-color: black;
+  color: white;
+  transition: all 0.5s;
+  overflow-x: hidden;
+}
+.black {
+  background-color: black;
+  color: white;
   transition: all 0.5s;
 }
-.dark {
-  background-color: black;
+.white {
+  background-color: white;
+  color: black;
+  transition: all 0.5s;
+}
+.red {
+  background-color: crimson;
+  color: white;
+  transition: all 0.5s;
+}
+.green {
+  background-color: rgb(0, 50, 0);
+  color: white;
+  transition: all 0.5s;
+}
+.teal {
+  background-color: cyan;
+  color: black;
+}
+.blue {
+  background-color: navy;
+  color: white;
+  transition: all 0.5s;
+}
+.purple {
+  background-color: rebeccapurple;
+  color: white;
+  transition: all 0.5s;
+}
+.red-orange {
+  background-image: linear-gradient(to right, crimson, darkorange);
+  color: white;
+  transition: all 0.5s;
+}
+.green-yellow {
+  background-image: linear-gradient(to right, darkgreen, yellow);
+  
+}
+.blue-purple {
+  background-image: linear-gradient(to right, navy, rebeccapurple);
   color: white;
   transition: all 0.5s;
 }
@@ -79,6 +126,16 @@ body {
   border-color: gray;
   margin: 10px;
 
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    &:hover, &:active {
+      transform: none;
+      color: grey;
+      border-color: grey;
+    }
+  }
   &:hover {
     border-color: goldenrod;
     color: goldenrod;
@@ -185,4 +242,39 @@ h1 {
 }
 .game-won-screen {
   background-color: rgba(0, 128, 0, 0.75);
+}
+.coninue-playing {
+  color: white;
+  border-color: white;
+
+  &:hover {
+    background-color: white;
+  }
+  &:active {
+    background-color: transparent;
+    color: white;
+  }
+}
+
+.shop > h1 {
+  margin: 50px 0px;
+}
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+
+  & > div {
+    width: 100px;
+    border: 2px solid goldenrod;
+    border-radius: 8px;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }

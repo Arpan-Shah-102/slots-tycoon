@@ -13,9 +13,9 @@ let upgradeLuckLevel = 1;
 let upgradeIncomeLevel = 1;
 let upgradeSpinLevel = 1;
 
-let upgradeLuckPrice = 500;
+let upgradeLuckPrice = 400;
 let upgradeIncomePrice = 500;
-let upgradeSpinPrice = 500;
+let upgradeSpinPrice = 300;
 
 let upgradeLuckContainer = document.querySelector(".luck-cont");
 let upgradeIncomeContainer = document.querySelector(".income-cont");

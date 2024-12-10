@@ -33,7 +33,7 @@ let c = document.querySelector('.c');
 
 let body = document.querySelector('body');
 let colorThemes = document.querySelector('.color-themes');
-const colors = ['black', 'white', 'red', 'green', 'teal', 'blue', 'purple', 'red-orange', 'green-yellow', 'blue-purple'];
+const colors = ['black', 'white', 'red', 'green', 'teal', 'blue', 'purple']  // , 'red-orange', 'green-yellow', 'blue-purple'];
 let pointer = 0;
 
 const slotSound = new Audio('./assets/slot-spin-sound.mp3');
@@ -52,6 +52,8 @@ let gameWonScreen = document.querySelector('.game-won-screen');
 
 let playAgain = document.querySelector('.coninue-playing');
 let finsihedMessageShown = false;
+
+let nftMultiplier = 0;
 
 spin.addEventListener("click", function() {
   try {
@@ -81,7 +83,7 @@ autoSpin.addEventListener("click", function() {
   }
 });
 
-symbols = ['🍋','🪙','🥭','🔔','🍉','⭐','🍇', '🎰', '👑', '💰', '🌟 ', '💵', '🍀','🥇','🥈','🥉','🍒','💎','7️⃣'];
+symbols = ['🍋','🪙','🥭','🔔','🍉','⭐','🍇', '🎰', '👑', '💰', '💵', '🍀','🥇','🥈','🥉','🍒','💎','7️⃣'];
 function spinSlot(iterations, autoSpinOn) {
   let completedSpins = 0;
   let multiplier;
@@ -101,6 +103,7 @@ function spinSlot(iterations, autoSpinOn) {
       if (addedBonus >= 1.25) {
         money += addedBonus;
       }
+      money += nftMultiplier;
       moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
       let s1;
@@ -151,6 +154,7 @@ function spinSlot(iterations, autoSpinOn) {
           autoSpin.disabled = false;
         }
       }, 1000 * multiplier);
+      updateStats();
       gameOverCheck();
       if (gameOverScreen.style.display == "flex" || gameWonScreen.style.display == "flex") {
         return;
@@ -167,7 +171,28 @@ colorThemes.addEventListener("click", function () {
   }
   body.classList.add(colors[pointer]);
   changBgColor.play();
+  updateStats();
   gameOverCheck();
+});
+
+let redToOrangeBgFade = document.querySelector('.red-orage.bg-shop-item');
+let greenToYellowBgFade = document.querySelector('.green-yellow.bg-shop-item');
+let blueToPurpleBgFade = document.querySelector('.blue-purple.bg-shop-item');
+
+let redToOrangeClicked = false;
+let greenToOrangeClicked = false;
+let blueToPurpleClicked = false;
+
+redToOrangeBgFade.addEventListener("click", function() {
+  if (!redToOrangeClicked) {
+    if (money >= 1000) {
+      money -= 1000;
+      colors.push("red-orange");
+      redToOrangeClicked = true;
+      body.className = "";
+      body.classList.add("red-orange");
+    }
+  }
 });
 
 upgradeLuck.addEventListener("click", function() {
@@ -195,6 +220,7 @@ upgradeLuck.addEventListener("click", function() {
   } else {
     alert("You don't have enough money to upgrade this feature.");
   }
+  updateStats();
   gameOverCheck();
 });
 upgradeIncome.addEventListener("click", function() {
@@ -223,6 +249,7 @@ upgradeIncome.addEventListener("click", function() {
   } else {
     alert("You don't have enough money to upgrade this feature.");
   }
+  updateStats();
   gameOverCheck();
 });
 upgradeSpin.addEventListener("click", function() {
@@ -250,6 +277,7 @@ upgradeSpin.addEventListener("click", function() {
   } else {
     alert("You don't have enough money to upgrade this feature.");
   }
+  updateStats();
   gameOverCheck();
 });
 
@@ -291,6 +319,7 @@ const colectibles = document.querySelector('.collectibles');
 buttons.forEach((button, index) => {
   button.addEventListener('click', function() {
     if (money >= itemShopPrice[index]) {
+
       money -= itemShopPrice[index];
       moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       button.disabled = true;
@@ -299,9 +328,34 @@ buttons.forEach((button, index) => {
       let colectibleData = document.createElement('h1');
       colectibleData.innerText = itemShopItems[index];
       colectibles.appendChild(colectibleData);
+      nftMultiplier += itemShopPrice[index] * 0.001;
     } else {
       alert("You don't have enough money to buy this NFT.");
     }
+    updateStats();
     gameOverCheck();
   });
 });
+
+let luckStatLabel = document.querySelector('.luck-stat');
+let twoPairStatLabel = document.querySelector('.two-pair-stat');
+let jackpotStatLabel = document.querySelector('.jackpot-stat');
+let spinStatLabel = document.querySelector('.spin-stat');
+let nftStatLabel = document.querySelector('.nft-stat');
+
+function updateStats() {
+  let luckStat = (100 - ((symbols.length / 18) * 100)).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  let twoPairStat = twoPairPrize.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  let jackpotStat = jackpotPrize.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  let spinStat = addedBonus.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  if (spinStat == 1) {
+    spinStat = (0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });;
+  }
+  let nftStat = nftMultiplier.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  luckStatLabel.innerText = luckStat;
+  twoPairStatLabel.innerText = twoPairStat;
+  jackpotStatLabel.innerText = jackpotStat;
+  spinStatLabel.innerText = spinStat;
+  nftStatLabel.innerText = nftStat;
+}

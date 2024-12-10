@@ -1,4 +1,8 @@
 # slots-tycoon
+## IMPORTANT
+For some reason, my index.html file is getting flagged as a trojan virus lol <br/>
+Idk why, if someone knows how to fix it please tell me <br/>
+<br/>
 ### Slot Machine but with a tycoon twist.
 <br/>
 Have you ever liked playing a tycoon game as a kid? <br/>
@@ -9,10 +13,10 @@ This is the next best hit on the market! <br/>
 <br/>
 Check it out at https://arpan-shah-102.github.io/slots-tycoon/ <br/>
 
-### V1.6
-Added more background colors <br/>
-Added more upgrades while devaluing them and increasing their price <br/>
-Added the nft shop <br/>
+### V1.7
+NFTs give you a bonus now <br/>
+You can see your stats <br/>
+Gradient background shop structure and foundation <br/>
 
 ### Future Updates
 1. Saving Data will cookies will most likely be added.

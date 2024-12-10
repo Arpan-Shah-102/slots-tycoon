@@ -175,25 +175,25 @@ colorThemes.addEventListener("click", function () {
   gameOverCheck();
 });
 
-let redToOrangeBgFade = document.querySelector('.red-orage.bg-shop-item');
-let greenToYellowBgFade = document.querySelector('.green-yellow.bg-shop-item');
-let blueToPurpleBgFade = document.querySelector('.blue-purple.bg-shop-item');
+// let redToOrangeBgFade = document.querySelector('.red-orage.bg-shop-item');
+// let greenToYellowBgFade = document.querySelector('.green-yellow.bg-shop-item');
+// let blueToPurpleBgFade = document.querySelector('.blue-purple.bg-shop-item');
 
-let redToOrangeClicked = false;
-let greenToOrangeClicked = false;
-let blueToPurpleClicked = false;
+// let redToOrangeClicked = false;
+// let greenToOrangeClicked = false;
+// let blueToPurpleClicked = false;
 
-redToOrangeBgFade.addEventListener("click", function() {
-  if (!redToOrangeClicked) {
-    if (money >= 1000) {
-      money -= 1000;
-      colors.push("red-orange");
-      redToOrangeClicked = true;
-      body.className = "";
-      body.classList.add("red-orange");
-    }
-  }
-});
+// redToOrangeBgFade.addEventListener("click", function() {
+//   if (!redToOrangeClicked) {
+//     if (money >= 1000) {
+//       money -= 1000;
+//       colors.push("red-orange");
+//       redToOrangeClicked = true;
+//       body.className = "";
+//       body.classList.add("red-orange");
+//     }
+//   }
+// });
 
 upgradeLuck.addEventListener("click", function() {
   if (money >= upgradeLuckPrice) {

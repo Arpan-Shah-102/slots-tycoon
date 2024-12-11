@@ -44,6 +44,10 @@ const winAudio = new Audio('./assets/win.mp3');
 const loseAudio = new Audio('./assets/lose.mp3');
 const nftPurchase = new Audio('./assets/shop.mp3');
 const changBgColor = new Audio('./assets/change-bg-color.mp3');
+const bgPurchase = new Audio('./assets/background-purchase.mp3');
+const trophyPurchsed = new Audio('./assets/trophy-purchased.mp3');
+const buyLootBox = new Audio('./assets/buy-loot-box.mp3');
+const openLootBox = new Audio('./assets/open-loot-box.mp3');
 
 let prizeLog = document.querySelector('.prize-container');
 
@@ -54,6 +58,7 @@ let playAgain = document.querySelector('.coninue-playing');
 let finsihedMessageShown = false;
 
 let nftMultiplier = 0;
+let bgColorMultiplier = 0;
 
 spin.addEventListener("click", function() {
   try {
@@ -104,6 +109,7 @@ function spinSlot(iterations, autoSpinOn) {
         money += addedBonus;
       }
       money += nftMultiplier;
+      money += bgColorMultiplier;
       moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
       let s1;
@@ -165,6 +171,9 @@ function spinSlot(iterations, autoSpinOn) {
 
 colorThemes.addEventListener("click", function () {
   body.classList.remove(colors[pointer]);
+  body.classList.remove('red-orange');
+  body.classList.remove('green-yellow');
+  body.classList.remove('blue-purple');
   pointer++;
   if (pointer >= colors.length) {
     pointer = 0;
@@ -175,25 +184,88 @@ colorThemes.addEventListener("click", function () {
   gameOverCheck();
 });
 
-// let redToOrangeBgFade = document.querySelector('.red-orage.bg-shop-item');
-// let greenToYellowBgFade = document.querySelector('.green-yellow.bg-shop-item');
-// let blueToPurpleBgFade = document.querySelector('.blue-purple.bg-shop-item');
+let redToOrangeBgFade = document.querySelector('.red-orange.bg-shop-item');
+let greenToYellowBgFade = document.querySelector('.green-yellow.bg-shop-item');
+let blueToPurpleBgFade = document.querySelector('.blue-purple.bg-shop-item');
 
-// let redToOrangeClicked = false;
-// let greenToOrangeClicked = false;
-// let blueToPurpleClicked = false;
+let redToOrangeClicked = false;
+let greenToOrangeClicked = false;
+let blueToPurpleClicked = false;
 
-// redToOrangeBgFade.addEventListener("click", function() {
-//   if (!redToOrangeClicked) {
-//     if (money >= 1000) {
-//       money -= 1000;
-//       colors.push("red-orange");
-//       redToOrangeClicked = true;
-//       body.className = "";
-//       body.classList.add("red-orange");
-//     }
-//   }
-// });
+let bgStat = document.querySelector('.bg-stat');
+
+redToOrangeBgFade.addEventListener("click", function() {
+  if (!redToOrangeClicked) {
+    if (money >= 1000) {
+      money -= 1000;
+      moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      bgColorMultiplier += 1;
+      redToOrangeBgFade.innerText = "Change";
+      bgStat.innerText = bgColorMultiplier.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      bgPurchase.play();
+
+      colors.push("red-orange");
+      pointer = colors.length - 1;
+      redToOrangeClicked = true;
+      body.className = "";
+      body.classList.add("red-orange");
+    } else {
+      alert("You don't have enough money to buy this background.");
+    }
+  } else {
+    body.className = "";
+    body.classList.add("red-orange");
+  }
+  gameOverCheck();
+});
+greenToYellowBgFade.addEventListener("click", function() {
+  if (!greenToOrangeClicked) {
+    if (money >= 1000) {
+      money -= 1000;
+      moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      bgColorMultiplier += 1;
+      greenToYellowBgFade.innerText = "Change";
+      bgStat.innerText = bgColorMultiplier.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      bgPurchase.play();
+
+      colors.push("green-yellow");
+      pointer = colors.length - 1;
+      greenToOrangeClicked = true;
+      body.className = "";
+      body.classList.add("green-yellow");
+    } else {
+      alert("You don't have enough money to buy this background.");
+    }
+  } else {
+    body.className = "";
+    body.classList.add("green-yellow");
+  }
+  gameOverCheck();
+});
+blueToPurpleBgFade.addEventListener("click", function() {
+  if (!blueToPurpleClicked) {
+    if (money >= 1000) {
+      money -= 1000;
+      moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      bgColorMultiplier += 1;
+      blueToPurpleBgFade.innerText = "Change";
+      bgStat.innerText = bgColorMultiplier.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      bgPurchase.play();
+
+      colors.push("blue-purple");
+      pointer = colors.length - 1;
+      blueToPurpleClicked = true;
+      body.className = "";
+      body.classList.add("blue-purple");
+    } else {
+      alert("You don't have enough money to buy this background.");
+    }
+  } else {
+    body.className = "";
+    body.classList.add("blue-purple");
+  }
+  gameOverCheck();
+});
 
 upgradeLuck.addEventListener("click", function() {
   if (money >= upgradeLuckPrice) {
@@ -359,3 +431,142 @@ function updateStats() {
   spinStatLabel.innerText = spinStat;
   nftStatLabel.innerText = nftStat;
 }
+
+let tenThousandTrophy = document.querySelector('.tenK > button');
+let hundredThousandTrophy = document.querySelector('.oneHundredK > button');
+let millionTrophy = document.querySelector('.oneMillion > button');
+
+let ownedTrophies = document.querySelector('.owned-trophies');
+
+tenThousandTrophy.addEventListener('click', function() {
+  if (money >= 10000) {
+    money -= 10000;
+    moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    tenThousandTrophy.disabled = true;
+    trophyPurchsed.play();
+
+    let trophyIcon = document.createElement('h1');
+    trophyIcon.innerText = '🥉';
+    ownedTrophies.appendChild(trophyIcon);
+  } else {
+    alert("You don't have enough money to buy this trophy.");
+  }
+  gameOverCheck();
+});
+hundredThousandTrophy.addEventListener('click', function() {
+  if (money >= 100000) {
+    money -= 100000;
+    moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    hundredThousandTrophy.disabled = true;
+    trophyPurchsed.play();
+
+    let trophyIcon = document.createElement('h1');
+    trophyIcon.innerText = '🥈';
+    ownedTrophies.appendChild(trophyIcon);
+  } else {
+    alert("You don't have enough money to buy this trophy.");
+  }
+  gameOverCheck();
+});
+millionTrophy.addEventListener('click', function() {
+  if (money >= 1000000) {
+    money -= 1000000;
+    moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    millionTrophy.disabled = true;
+    trophyPurchsed.play();
+
+    let trophyIcon = document.createElement('h1');
+    trophyIcon.innerText = '🥈';
+    ownedTrophies.appendChild(trophyIcon);
+  } else {
+    alert("You don't have enough money to buy this trophy.");
+  }
+  gameOverCheck();
+});
+
+// let lootBoxScreen = document.querySelector('');
+// let lbSpin = document.querySelector('');
+// let lbAutoSpin = document.querySelector('');
+
+// const normalListLb = ['🗑️','📦','💼','🗃️','🗄️'];
+// const accurateListLb = ['🗑️','🗑️','🗑️','🗑️','🗑️','🗑️','🗑️','🗑️','📦','📦','📦','📦','💼','💼','💼','🗃️','🗃️','🗄️'];
+
+// function spinLB(iterations, autoSpinOn) {
+//   let completedSpins = 0;
+//   let multiplier;
+//   if (autoSpinOn) {
+//     multiplier = 0.5;
+//   } else {
+//     multiplier = 1
+//   }
+//   for (let j = 0; j < iterations; j++) {
+//     setTimeout(function () {
+//       buyLootBox.play();
+      
+//       spin.disabled = true;
+//       autoSpin.disabled = true;
+
+//       money -= 10;
+//       if (addedBonus >= 1.25) {
+//         money += addedBonus;
+//       }
+//       money += nftMultiplier;
+//       money += bgColorMultiplier;
+//       moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+//       let s1;
+//       let s2;
+//       let s3;
+
+//       for (let i = 0; i < 10; i++) {
+//         setTimeout(function() {
+//           s1 = symbols[Math.floor(Math.random() * symbols.length)];
+//           s2 = symbols[Math.floor(Math.random() * symbols.length)];
+//           s3 = symbols[Math.floor(Math.random() * symbols.length)];
+
+//           a.innerText = s1;
+//           b.innerText = s2;
+//           c.innerText = s3;
+//         }, 100 * i * multiplier);
+//       }
+//       setTimeout(function() {
+//         let moneyEarned = 0;
+//         totalSpins++;
+//         let tag = document.createElement('p');
+
+//         if (s1 == s2 && s2 == s3) {
+//           money += jackpotPrize;
+//           moneyEarned += jackpotPrize;
+//           terminal.innerText = `Congratulations! You won $${moneyEarned.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}!`;
+//           moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+//           jackpot.play();
+//           tag.innerText = `Spin ${totalSpins} - $${moneyEarned.toFixed(2)} - ${s1} ${s2} ${s3}`;
+//           prizeLog.insertBefore(tag, prizeLog.firstChild);
+//         }
+//         else if (s1 == s2 || s1 == s3 || s2 == s3) {
+//           money += twoPairPrize;
+//           moneyEarned += twoPairPrize;
+//           terminal.innerText = `You won $${moneyEarned.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}!`;
+//           moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+//           slotPayout.play();
+//           tag.innerText = `Spin ${totalSpins} - $${moneyEarned.toFixed(2)} - ${s1} ${s2} ${s3}`;
+//           prizeLog.insertBefore(tag, prizeLog.firstChild);
+//         }
+//         else {
+//           terminal.innerText = "Sorry, you didn't win.";
+//         }
+
+//         completedSpins++;
+//         if (completedSpins == iterations) {
+//           spin.disabled = false;
+//           autoSpin.disabled = false;
+//         }
+//       }, 1000 * multiplier);
+//       updateStats();
+//       gameOverCheck();
+//       if (gameOverScreen.style.display == "flex" || gameWonScreen.style.display == "flex") {
+//         return;
+//       }
+//     }, 1250 * j * multiplier);
+//   }
+// }

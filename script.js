@@ -205,7 +205,7 @@ redToOrangeBgFade.addEventListener("click", function() {
       bgPurchase.play();
 
       colors.push("red-orange");
-      pointer = colors.length - 1;
+      pointer = colors.length - 1.25;
       redToOrangeClicked = true;
       body.className = "";
       body.classList.add("red-orange");
@@ -223,7 +223,7 @@ greenToYellowBgFade.addEventListener("click", function() {
     if (money >= 1000) {
       money -= 1000;
       moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-      bgColorMultiplier += 1;
+      bgColorMultiplier += 1.25;
       greenToYellowBgFade.innerText = "Change";
       bgStat.innerText = bgColorMultiplier.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       bgPurchase.play();
@@ -247,7 +247,7 @@ blueToPurpleBgFade.addEventListener("click", function() {
     if (money >= 1000) {
       money -= 1000;
       moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-      bgColorMultiplier += 1;
+      bgColorMultiplier += 1.25;
       blueToPurpleBgFade.innerText = "Change";
       bgStat.innerText = bgColorMultiplier.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       bgPurchase.play();
@@ -476,7 +476,7 @@ millionTrophy.addEventListener('click', function() {
     trophyPurchsed.play();
 
     let trophyIcon = document.createElement('h1');
-    trophyIcon.innerText = '🥈';
+    trophyIcon.innerText = '🥇';
     ownedTrophies.appendChild(trophyIcon);
   } else {
     alert("You don't have enough money to buy this trophy.");
@@ -484,12 +484,38 @@ millionTrophy.addEventListener('click', function() {
   gameOverCheck();
 });
 
-// let lootBoxScreen = document.querySelector('');
-// let lbSpin = document.querySelector('');
-// let lbAutoSpin = document.querySelector('');
+const muteButton = document.querySelector('.mute');
+muteButton.addEventListener('click', function () {
+  slotSound.muted = !slotSound.muted;
+  slotPayout.muted = !slotPayout.muted;
+  jackpot.muted = !jackpot.muted;
+  upgradeSound.muted = !upgradeSound.muted;
+  winAudio.muted = !winAudio.muted;
+  loseAudio.muted = !loseAudio.muted;
+  nftPurchase.muted = !nftPurchase.muted;
+  changBgColor.muted = !changBgColor.muted;
+  bgPurchase.muted = !bgPurchase.muted;
+  trophyPurchsed.muted = !trophyPurchsed.muted;
+  buyLootBox.muted = !buyLootBox.muted;
+  openLootBox.muted = !openLootBox.muted;
+
+  console.log(muteButton.innerText)
+  if (muteButton.innerText == "Mute") {
+    muteButton.innerText = "Unmute";
+  } else {
+    muteButton.innerText = "Mute";
+  }
+});
+
+let lootBoxScreen = document.querySelector('.box-display');
+let lbSpin = document.querySelector('.lb-spin');
+let lbAutoSpin = document.querySelector('.lb-auto-spin');
+let lbTerminal = document.querySelector('.lb-terminal');
+// reward is a background (they are memes lol)
 
 // const normalListLb = ['🗑️','📦','💼','🗃️','🗄️'];
 // const accurateListLb = ['🗑️','🗑️','🗑️','🗑️','🗑️','🗑️','🗑️','🗑️','📦','📦','📦','📦','💼','💼','💼','🗃️','🗃️','🗄️'];
+// const rewardListLb = ['pickle-grandma', 'pickle-grandma', 'pickle-grandma', 'pickle-grandma', 'pickle-grandma', 'pickle-grandma', 'pickle-grandma', 'pickle-grandma', 0, 0, 0, 0, 100, 100, 100, ]
 
 // function spinLB(iterations, autoSpinOn) {
 //   let completedSpins = 0;

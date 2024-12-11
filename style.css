@@ -66,7 +66,7 @@ body {
 }
 .green-yellow {
   background-image: linear-gradient(to right, darkgreen, yellow);
-  
+  color: white
 }
 .blue-purple {
   background-image: linear-gradient(to right, navy, rebeccapurple);

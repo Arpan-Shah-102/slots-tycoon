@@ -64,6 +64,7 @@ let finsihedMessageShown = false;
 
 let nftMultiplier = 0;
 let bgColorMultiplier = 0;
+let lolBgNegativeMultiplier = 0;
 
 spin.addEventListener("click", function() {
   try {
@@ -78,7 +79,7 @@ spin.addEventListener("click", function() {
   }
 });
 autoSpin.addEventListener("click", function() {
-  let totalBonus = nftMultiplier + bgColorMultiplier;
+  let totalBonus = nftMultiplier + bgColorMultiplier - lolBgNegativeMultiplier;
   if (addedBonus >= 1.25) {
     totalBonus += addedBonus;
   }
@@ -119,6 +120,7 @@ function spinSlot(iterations, autoSpinOn) {
       }
       money += nftMultiplier;
       money += bgColorMultiplier;
+      money -= lolBgNegativeMultiplier;
       moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
       let s1;
@@ -190,6 +192,12 @@ colorThemes.addEventListener("click", function () {
   }
   body.classList.add(colors[pointer]);
   changBgColor.play();
+  lolBgNegativeMultiplier = 0;
+  ['img-1', 'img-2', 'img-3', 'img-4', 'img-5', 'img-6', 'img-7', 'img-8', 'img-9', 'img-10'].forEach(function (item) {
+    if (item == colors[pointer]) {
+      lolBgNegativeMultiplier = 5;
+    }
+  });
   updateStats();
   gameOverCheck();
 });
@@ -211,13 +219,12 @@ redToOrangeBgFade.addEventListener("click", function() {
     if (money >= 1000) {
       money -= 1000;
       moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-      bgColorMultiplier += 1;
+      bgColorMultiplier += 1.25;
       redToOrangeBgFade.innerText = "Change";
-      bgStat.innerText = bgColorMultiplier.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       bgPurchase.play();
 
       colors.push("red-orange");
-      pointer = colors.length - 1.25;
+      pointer = colors.length - 1;
       redToOrangeClicked = true;
       body.className = "";
       body.classList.add("red-orange");
@@ -228,6 +235,7 @@ redToOrangeBgFade.addEventListener("click", function() {
     body.className = "";
     body.classList.add("red-orange");
   }
+  updateStats();
   gameOverCheck();
 });
 greenToYellowBgFade.addEventListener("click", function() {
@@ -237,7 +245,6 @@ greenToYellowBgFade.addEventListener("click", function() {
       moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       bgColorMultiplier += 1.25;
       greenToYellowBgFade.innerText = "Change";
-      bgStat.innerText = bgColorMultiplier.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       bgPurchase.play();
 
       colors.push("green-yellow");
@@ -252,6 +259,7 @@ greenToYellowBgFade.addEventListener("click", function() {
     body.className = "";
     body.classList.add("green-yellow");
   }
+  updateStats();
   gameOverCheck();
 });
 blueToPurpleBgFade.addEventListener("click", function() {
@@ -261,7 +269,6 @@ blueToPurpleBgFade.addEventListener("click", function() {
       moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       bgColorMultiplier += 1.25;
       blueToPurpleBgFade.innerText = "Change";
-      bgStat.innerText = bgColorMultiplier.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       bgPurchase.play();
 
       colors.push("blue-purple");
@@ -276,6 +283,7 @@ blueToPurpleBgFade.addEventListener("click", function() {
     body.className = "";
     body.classList.add("blue-purple");
   }
+  updateStats();
   gameOverCheck();
 });
 ultraThemeBgFade.addEventListener("click", function() {
@@ -285,7 +293,6 @@ ultraThemeBgFade.addEventListener("click", function() {
       moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       bgColorMultiplier += 4;
       ultraThemeBgFade.innerText = "Change";
-      bgStat.innerText = bgColorMultiplier.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       bgPurchase.play();
 
       colors.push("ultra-theme");
@@ -300,6 +307,7 @@ ultraThemeBgFade.addEventListener("click", function() {
     body.className = "";
     body.classList.add("ultra-theme");
   }
+  updateStats();
   gameOverCheck();
 });
 
@@ -460,12 +468,14 @@ function updateStats() {
     spinStat = (0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });;
   }
   let nftStat = nftMultiplier.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  let bgStatLabel = (bgColorMultiplier - lolBgNegativeMultiplier).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
   luckStatLabel.innerText = luckStat;
   twoPairStatLabel.innerText = twoPairStat;
   jackpotStatLabel.innerText = jackpotStat;
   spinStatLabel.innerText = spinStat;
   nftStatLabel.innerText = nftStat;
+  bgStat.innerText = bgStatLabel;
 }
 
 let tenThousandTrophy = document.querySelector('.tenK > button');
@@ -587,12 +597,14 @@ lbSpin.addEventListener('click', function () {
 
         rewardListLb[randomIndex] = 100;
         lbTerminal.innerText = `You won background #${randomIndex+1}!`
+        lolBgNegativeMultiplier = 5
       } else {
         money += 100;
         moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         lbTerminal.innerText = `You won $100!`
       }
       lbSpin.disabled = false;
+      updateStats();
       gameOverCheck();
     }, 1000);
   } else {

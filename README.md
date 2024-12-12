@@ -1,4 +1,8 @@
 # slots-tycoon
+## IMPORTANT
+For some reason, my index.html file is getting flagged as a trojan virus lol <br/>
+Idk why, if someone knows how to fix it please tell me <br/>
+<br/>
 ### Slot Machine but with a tycoon twist.
 <br/>
 Have you ever liked playing a tycoon game as a kid? <br/>

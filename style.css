@@ -1,6 +1,8 @@
 /* Presets */
 * {
   font-family: monospace, serif, sans-serif;
+  margin: 0px;
+  margin: 0px;
 }
 button {
   border-radius: 8px;
@@ -18,7 +20,9 @@ button {
     transform: translateY(4px);
   }
 }
-
+p, h2 {
+  margin: 10px 0px;
+}
 body {
   background-color: black;
   color: white;
@@ -190,7 +194,8 @@ body {
 h1 {
   font-size: 50px;
   text-align: center;
-  margin-bottom: 50px;
+  margin-top: 50px;
+  margin-bottom: 25px;
 }
 .upg-box {
   display: flex;
@@ -229,8 +234,8 @@ h1 {
   text-align: center;
   
   position: fixed;
-  top: -1px;
-  left: -5px;
+  top: 0px;
+  margin: 0px;
 
   display: none;
   flex-direction: column;
@@ -239,13 +244,16 @@ h1 {
 }
 .game-over-screen {
   background-color: rgba(255, 0, 0, 0.75);
+  margin: 0px;
 }
 .game-won-screen {
   background-color: rgba(0, 128, 0, 0.75);
+  margin: 0px;
 }
 .coninue-playing {
   color: white;
   border-color: white;
+  margin-top: 10px;
 
   &:hover {
     background-color: white;

@@ -78,11 +78,15 @@ spin.addEventListener("click", function() {
   }
 });
 autoSpin.addEventListener("click", function() {
+  let totalBonus = nftMultiplier + bgColorMultiplier;
+  if (addedBonus >= 1.25) {
+    totalBonus += addedBonus;
+  }
   try {
     numberOfItereations = Number(prompt("How many times would you like to spin?"));
     if (isNaN(numberOfItereations) || numberOfItereations <= 0) {
       throw new Error("Invalid number of iterations. Please enter a positive number.");
-    } else if (numberOfItereations * 10 > money) {
+    } else if (numberOfItereations * (10 - totalBonus) > money) {
       throw new Error("You don't have enough money to perform that many spins.");
     }
     spinSlot(numberOfItereations, true);

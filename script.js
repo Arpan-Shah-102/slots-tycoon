@@ -36,18 +36,23 @@ let colorThemes = document.querySelector('.color-themes');
 const colors = ['black', 'white', 'red', 'green', 'teal', 'blue', 'purple']  // , 'red-orange', 'green-yellow', 'blue-purple'];
 let pointer = 0;
 
-const slotSound = new Audio('./assets/slot-spin-sound.mp3');
-const slotPayout = new Audio('./assets/slot-payout.mp3');
-const jackpot = new Audio('./assets/jackpot.mp3');
-const upgradeSound = new Audio('./assets/upgrade-purchased.mp3');
-const winAudio = new Audio('./assets/win.mp3');
-const loseAudio = new Audio('./assets/lose.mp3');
-const nftPurchase = new Audio('./assets/shop.mp3');
-const changBgColor = new Audio('./assets/change-bg-color.mp3');
-const bgPurchase = new Audio('./assets/background-purchase.mp3');
-const trophyPurchsed = new Audio('./assets/trophy-purchased.mp3');
-const buyLootBox = new Audio('./assets/buy-loot-box.mp3');
-const openLootBox = new Audio('./assets/open-loot-box.mp3');
+const slotSound = new Audio('./assets/sounds/slot-spin-sound.mp3');
+const slotPayout = new Audio('./assets/sounds/slot-payout.mp3');
+const jackpot = new Audio('./assets/sounds/jackpot.mp3');
+const upgradeSound = new Audio('./assets/sounds/upgrade-purchased.mp3');
+const winAudio = new Audio('./assets/sounds/win.mp3');
+const loseAudio = new Audio('./assets/sounds/lose.mp3');
+const nftPurchase = new Audio('./assets/sounds/shop.mp3');
+const changBgColor = new Audio('./assets/sounds/change-bg-color.mp3');
+const bgPurchase = new Audio('./assets/sounds/background-purchase.mp3');
+const trophyPurchsed = new Audio('./assets/sounds/trophy-purchased.mp3');
+const buyLootBox = new Audio('./assets/sounds/buy-loot-box.mp3');
+const openLootBox = new Audio('./assets/sounds/open-loot-box.mp3');
+
+const backgroundAudio = new Audio('./assets/background-music.m4a');
+backgroundAudio.loop = true;
+backgroundAudio.volume = 0.5;
+backgroundAudio.muted = true;
 
 let prizeLog = document.querySelector('.prize-container');
 
@@ -174,6 +179,7 @@ colorThemes.addEventListener("click", function () {
   body.classList.remove('red-orange');
   body.classList.remove('green-yellow');
   body.classList.remove('blue-purple');
+  body.classList.remove('ultra-theme');
   pointer++;
   if (pointer >= colors.length) {
     pointer = 0;
@@ -187,10 +193,12 @@ colorThemes.addEventListener("click", function () {
 let redToOrangeBgFade = document.querySelector('.red-orange.bg-shop-item');
 let greenToYellowBgFade = document.querySelector('.green-yellow.bg-shop-item');
 let blueToPurpleBgFade = document.querySelector('.blue-purple.bg-shop-item');
+let ultraThemeBgFade = document.querySelector('.ultra-theme.bg-shop-item');
 
 let redToOrangeClicked = false;
 let greenToOrangeClicked = false;
 let blueToPurpleClicked = false;
+let ultraThemeClicked = false;
 
 let bgStat = document.querySelector('.bg-stat');
 
@@ -263,6 +271,30 @@ blueToPurpleBgFade.addEventListener("click", function() {
   } else {
     body.className = "";
     body.classList.add("blue-purple");
+  }
+  gameOverCheck();
+});
+ultraThemeBgFade.addEventListener("click", function() {
+  if (!ultraThemeClicked) {
+    if (money >= 3000) {
+      money -= 3000;
+      moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      bgColorMultiplier += 4;
+      ultraThemeBgFade.innerText = "Change";
+      bgStat.innerText = bgColorMultiplier.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      bgPurchase.play();
+
+      colors.push("ultra-theme");
+      pointer = colors.length - 1;
+      ultraThemeClicked = true;
+      body.className = "";
+      body.classList.add("ultra-theme");
+    } else {
+      alert("You don't have enough money to buy this background.");
+    }
+  } else {
+    body.className = "";
+    body.classList.add("ultra-theme");
   }
   gameOverCheck();
 });
@@ -499,100 +531,67 @@ muteButton.addEventListener('click', function () {
   buyLootBox.muted = !buyLootBox.muted;
   openLootBox.muted = !openLootBox.muted;
 
-  console.log(muteButton.innerText)
-  if (muteButton.innerText == "Mute") {
-    muteButton.innerText = "Unmute";
+  if (muteButton.innerText == "Mute SFX") {
+    muteButton.innerText = "Unmute SFX";
   } else {
-    muteButton.innerText = "Mute";
+    muteButton.innerText = "Mute SFX";
+  }
+});
+const bgMusic = document.querySelector('.bg-music-mute');
+bgMusic.addEventListener('click', function () {
+  backgroundAudio.pause();
+  backgroundAudio.currentTime = 0;
+  backgroundAudio.play();
+  backgroundAudio.muted = !backgroundAudio.muted;
+
+  if (bgMusic.innerText == "Mute Background Music") {
+    bgMusic.innerText = "Unmute Background Music";
+  } else {
+    bgMusic.innerText = "Mute Background Music";
   }
 });
 
 let lootBoxScreen = document.querySelector('.box-display');
 let lbSpin = document.querySelector('.lb-spin');
-let lbAutoSpin = document.querySelector('.lb-auto-spin');
 let lbTerminal = document.querySelector('.lb-terminal');
-// reward is a background (they are memes lol)
 
-// const normalListLb = ['🗑️','📦','💼','🗃️','🗄️'];
-// const accurateListLb = ['🗑️','🗑️','🗑️','🗑️','🗑️','🗑️','🗑️','🗑️','📦','📦','📦','📦','💼','💼','💼','🗃️','🗃️','🗄️'];
-// const rewardListLb = ['pickle-grandma', 'pickle-grandma', 'pickle-grandma', 'pickle-grandma', 'pickle-grandma', 'pickle-grandma', 'pickle-grandma', 'pickle-grandma', 0, 0, 0, 0, 100, 100, 100, ]
+const normalListLb = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣' ,'9️⃣' ,'🔟'];
+const rewardListLb = ['img-1', 'img-2', 'img-3', 'img-4', 'img-5', 'img-6', 'img-7', 'img-8', 'img-9', 'img-10'];
 
-// function spinLB(iterations, autoSpinOn) {
-//   let completedSpins = 0;
-//   let multiplier;
-//   if (autoSpinOn) {
-//     multiplier = 0.5;
-//   } else {
-//     multiplier = 1
-//   }
-//   for (let j = 0; j < iterations; j++) {
-//     setTimeout(function () {
-//       buyLootBox.play();
-      
-//       spin.disabled = true;
-//       autoSpin.disabled = true;
+lbSpin.addEventListener('click', function () {
+  if (money >= 500) {
+    money -= 500;
+    moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    lbSpin.disabled = true;
+    buyLootBox.play();
 
-//       money -= 10;
-//       if (addedBonus >= 1.25) {
-//         money += addedBonus;
-//       }
-//       money += nftMultiplier;
-//       money += bgColorMultiplier;
-//       moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    for (let i = 0; i < 10; i++) {
+      setTimeout(function () {
+        lootBoxScreen.innerText = normalListLb[i];
+      }, 100 * i);
+    }
+    setTimeout(function () {
+      openLootBox.play();
+      let randomIndex = Math.floor(Math.random() * 10);
+      lootBoxScreen.innerText = normalListLb[randomIndex];
 
-//       let s1;
-//       let s2;
-//       let s3;
+      if (rewardListLb[randomIndex] != 100) {
+        colors.push(rewardListLb[randomIndex]);
+        pointer = colors.length - 1;
+        body.className = "";
+        body.classList.add(rewardListLb[randomIndex]);
 
-//       for (let i = 0; i < 10; i++) {
-//         setTimeout(function() {
-//           s1 = symbols[Math.floor(Math.random() * symbols.length)];
-//           s2 = symbols[Math.floor(Math.random() * symbols.length)];
-//           s3 = symbols[Math.floor(Math.random() * symbols.length)];
-
-//           a.innerText = s1;
-//           b.innerText = s2;
-//           c.innerText = s3;
-//         }, 100 * i * multiplier);
-//       }
-//       setTimeout(function() {
-//         let moneyEarned = 0;
-//         totalSpins++;
-//         let tag = document.createElement('p');
-
-//         if (s1 == s2 && s2 == s3) {
-//           money += jackpotPrize;
-//           moneyEarned += jackpotPrize;
-//           terminal.innerText = `Congratulations! You won $${moneyEarned.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}!`;
-//           moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-//           jackpot.play();
-//           tag.innerText = `Spin ${totalSpins} - $${moneyEarned.toFixed(2)} - ${s1} ${s2} ${s3}`;
-//           prizeLog.insertBefore(tag, prizeLog.firstChild);
-//         }
-//         else if (s1 == s2 || s1 == s3 || s2 == s3) {
-//           money += twoPairPrize;
-//           moneyEarned += twoPairPrize;
-//           terminal.innerText = `You won $${moneyEarned.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}!`;
-//           moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-//           slotPayout.play();
-//           tag.innerText = `Spin ${totalSpins} - $${moneyEarned.toFixed(2)} - ${s1} ${s2} ${s3}`;
-//           prizeLog.insertBefore(tag, prizeLog.firstChild);
-//         }
-//         else {
-//           terminal.innerText = "Sorry, you didn't win.";
-//         }
-
-//         completedSpins++;
-//         if (completedSpins == iterations) {
-//           spin.disabled = false;
-//           autoSpin.disabled = false;
-//         }
-//       }, 1000 * multiplier);
-//       updateStats();
-//       gameOverCheck();
-//       if (gameOverScreen.style.display == "flex" || gameWonScreen.style.display == "flex") {
-//         return;
-//       }
-//     }, 1250 * j * multiplier);
-//   }
-// }
+        rewardListLb[randomIndex] = 100;
+        lbTerminal.innerText = `You won background #${randomIndex+1}!`
+      } else {
+        money += 100;
+        moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        lbTerminal.innerText = `You won $100!`
+      }
+      lbSpin.disabled = false;
+      gameOverCheck();
+    }, 1000);
+  } else {
+    alert("You don't have enough money to spin the loot box.");
+  }
+});

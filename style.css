@@ -376,9 +376,10 @@ h1 {
 .lb-btns {
   display: flex;
   justify-content: center;
-  gap: 25px;
-  align-items: center;
-  flex-wrap: wrap;
+}
+.lb-terminal {
+  text-align: center;
+  margin-top: 20px;
   margin-bottom: 100px;
 }
 
@@ -406,4 +407,51 @@ h1 {
   background-position: 0% 50%;
   animation: ultra-fade-theme infinite 10s ease-in-out;
   color: white;
+}
+
+.credits {
+  text-align: center;
+  margin-bottom: 20px;
+  border-top: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+.img-1 {
+  background-image: url('./assets/backgrounds/bg-1.png');
+  color: black;
+}
+.img-2 {
+  background-image: url('./assets/backgrounds/bg-2.png');
+  color: black;
+}
+.img-3 {
+  background-image: url('./assets/backgrounds/bg-3.png');
+  color: black;
+}
+.img-4 {
+  background-image: url('./assets/backgrounds/bg-4.png');
+  color: black;
+}
+.img-5 {
+  background-image: url('./assets/backgrounds/bg-5.png');
+  color: black;
+}
+.img-6 {
+  background-image: url('./assets/backgrounds/bg-6.png');
+  color: white;
+}
+.img-7 {
+  background-image: url('./assets/backgrounds/bg-7.png');
+  color: white;
+}
+.img-8 {
+  background-image: url('./assets/backgrounds/bg-8.png');
+  color: white;
+}
+.img-9 {
+  background-image: url('./assets/backgrounds/bg-9.png');
+  color: black;
+}
+.img-10 {
+  background-image: url('./assets/backgrounds/bg-10.png');
+  color: black;
 }

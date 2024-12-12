@@ -220,6 +220,7 @@ redToOrangeBgFade.addEventListener("click", function() {
       money -= 1000;
       moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       bgColorMultiplier += 1.25;
+      lolBgNegativeMultiplier = 0;
       redToOrangeBgFade.innerText = "Change";
       bgPurchase.play();
 
@@ -244,6 +245,7 @@ greenToYellowBgFade.addEventListener("click", function() {
       money -= 1000;
       moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       bgColorMultiplier += 1.25;
+      lolBgNegativeMultiplier = 0;
       greenToYellowBgFade.innerText = "Change";
       bgPurchase.play();
 
@@ -268,6 +270,7 @@ blueToPurpleBgFade.addEventListener("click", function() {
       money -= 1000;
       moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       bgColorMultiplier += 1.25;
+      lolBgNegativeMultiplier = 0;
       blueToPurpleBgFade.innerText = "Change";
       bgPurchase.play();
 
@@ -292,6 +295,7 @@ ultraThemeBgFade.addEventListener("click", function() {
       money -= 3000;
       moneySpent.innerText = money.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       bgColorMultiplier += 4;
+      lolBgNegativeMultiplier = 0;
       ultraThemeBgFade.innerText = "Change";
       bgPurchase.play();
 

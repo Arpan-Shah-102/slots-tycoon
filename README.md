@@ -26,3 +26,9 @@ Check it out at https://arpan-shah-102.github.io/slots-tycoon/ <br/>
 3. Loans, interst, banks
 4. Gambling Minions
 5. Add money goal
+
+### Credits
+#### Developer - Arpan Shah
+##### Loot Box Image Provider - Carson Moneys
+##### Background Music - Mason
+##### Idea Helper - Carter Ward, John Hagan

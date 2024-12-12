@@ -373,6 +373,9 @@ h1 {
   }
 }
 
+.box-display {
+  word-wrap: break-word;
+}
 .lb-btns {
   display: flex;
   justify-content: center;

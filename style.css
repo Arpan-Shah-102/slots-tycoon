@@ -37,44 +37,54 @@ body {
 .white {
   background-color: white;
   color: black;
+  text-shadow: 0px 0px 5px white;
   transition: all 0.5s;
 }
 .red {
   background-color: crimson;
   color: white;
+  text-shadow: 0px 0px 5px black;
   transition: all 0.5s;
 }
 .green {
   background-color: rgb(0, 50, 0);
   color: white;
+  text-shadow: 0px 0px 5px black;
   transition: all 0.5s;
 }
 .teal {
   background-color: rgb(0, 141, 217);
   color: black;
+  text-shadow: 0px 0px 5px white;
 }
 .blue {
   background-color: navy;
   color: white;
+  text-shadow: 0px 0px 5px black;
   transition: all 0.5s;
 }
 .purple {
   background-color: rebeccapurple;
   color: white;
+  text-shadow: 0px 0px 5px black;
   transition: all 0.5s;
 }
 .red-orange {
   background-image: linear-gradient(to right, crimson, darkorange);
   color: white;
+  text-shadow: 0px 0px 5px black;
   transition: all 0.5s;
 }
 .green-yellow {
   background-image: linear-gradient(to right, darkgreen, yellow);
-  color: white
+  color: white;
+  text-shadow: 0px 0px 5px black;
+  transition: all 0.5s;
 }
 .blue-purple {
   background-image: linear-gradient(to right, navy, rebeccapurple);
   color: white;
+  text-shadow: 0px 0px 5px black;
   transition: all 0.5s;
 }
 
@@ -181,6 +191,14 @@ body {
   & > p {
     margin: 0px;
   }
+}
+
+.upg-redirect-btn {
+  width: 100%;
+  margin: 0px;
+}
+#upgrades {
+  transition: all 0.5s ease-in-out;
 }
 
 .functions {
@@ -418,6 +436,12 @@ h1 {
   background-position: 0% 50%;
   animation: ultra-fade-theme infinite 10s ease-in-out;
   color: white;
+  text-shadow: 0px 0px 5px black;
+}
+.super-theme {
+  background-image: linear-gradient(to right, navy, rebeccapurple, crimson, darkorange);
+  color: white;
+  text-shadow: 0px 0px 5px black;
 }
 
 .credits {
@@ -428,41 +452,70 @@ h1 {
 
 .img-1 {
   background-image: url('./assets/backgrounds/bg-1.png');
-  color: black;
+  color: white;
+  text-shadow: 0px 0px 5px black;
 }
 .img-2 {
   background-image: url('./assets/backgrounds/bg-2.png');
   color: black;
+  text-shadow: 0px 0px 5px white;
 }
 .img-3 {
   background-image: url('./assets/backgrounds/bg-3.png');
   color: black;
+  text-shadow: 0px 0px 5px white;
 }
 .img-4 {
   background-image: url('./assets/backgrounds/bg-4.png');
   color: black;
+  text-shadow: 0px 0px 5px white;
 }
 .img-5 {
   background-image: url('./assets/backgrounds/bg-5.png');
   color: black;
+  text-shadow: 0px 0px 5px white;
 }
 .img-6 {
   background-image: url('./assets/backgrounds/bg-6.png');
   color: white;
+  text-shadow: 0px 0px 5px black;
 }
 .img-7 {
   background-image: url('./assets/backgrounds/bg-7.png');
   color: white;
+  text-shadow: 0px 0px 5px black;
 }
 .img-8 {
   background-image: url('./assets/backgrounds/bg-8.png');
   color: white;
+  text-shadow: 0px 0px 5px black;
 }
 .img-9 {
   background-image: url('./assets/backgrounds/bg-9.png');
   color: black;
+  text-shadow: 0px 0px 5px white;
 }
 .img-10 {
   background-image: url('./assets/backgrounds/bg-10.png');
   color: black;
+  text-shadow: 0px 0px 5px white;
+}
+
+.crypto-coin-buy {
+  height: 250px;
+  width: 150px;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  & img {
+    height: 75px;
+    width: 75px;
+  }
+  & > div {
+    display: flex;
+    justify-content: center;
+  }
 }

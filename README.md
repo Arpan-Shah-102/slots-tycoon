@@ -13,22 +13,27 @@ This is the next best hit on the market! <br/>
 <br/>
 Check it out at https://arpan-shah-102.github.io/slots-tycoon/ <br/>
 
-### V2.0
-- Fixed some small bugs. <br/>
-- Added a new ultra background in background shop. <br/>
-- Added loot boxes that give you meme backgrounds. <br/>
-- Added credits to credit the people who helped me. <br/>
-- Added background music that is togglable in the options <br/>
+### The Preperations Update V2.1
+- Fixed some small bugs <br/>
+- Replaced a background <br/>
+- Added a button for new players to help them find the shops <br/>
+- Made preperations for crypto update <br/>
+- Added new theme <br/>
 
 ### Future Updates
-1. Saving Data will cookies will most likely be added.
-2. The javascript code will be cleaned up.
-3. Loans, interst, banks
-4. Gambling Minions
-5. Add money goal
+#### Crypto Update V2.55
+1. Add Bitcoin, Ethereum, and Dogecoin
+2. Add new currency
+3. Add crypto mining
+4. Add crypto bonueses
+5. Add crypto shop
+6. Add cryptocurrency specific upgrades
+7. Change NFTs to food mall
+8. Add NFTs back to crypto update
 
-### Credits
-#### Developer - Arpan Shah
-##### Loot Box Image Provider - Carson Moneys
-##### Background Music - Mason
-##### Idea Helper - Carter Ward, John Hagan
+#### The Final Update V2.75
+9. Saving data with cookies
+10. Saving data to json files
+11. Loading data from json files
+12. Add better goals for beating the game
+13. Bug Fixes

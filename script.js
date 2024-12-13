@@ -80,7 +80,7 @@ spin.addEventListener("click", function() {
 });
 autoSpin.addEventListener("click", function() {
   let totalBonus = foodMultiplier + bgColorMultiplier - lolBgNegativeMultiplier;
-  if (addedBonus >= 1.25) {
+  if (addedBonus >= 1.15) {
     totalBonus += addedBonus;
   }
   try {
@@ -115,7 +115,7 @@ function spinSlot(iterations, autoSpinOn) {
       autoSpin.disabled = true;
 
       totalMoney -= 10;
-      if (addedBonus >= 1.25) {
+      if (addedBonus >= 1.15) {
         totalMoney += addedBonus;
       }
       totalMoney += foodMultiplier;
@@ -302,7 +302,7 @@ ultraThemeBgFade.addEventListener("click", function() {
     if (totalMoney >= 3000) {
       totalMoney -= 3000;
       moneySpent.innerText = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-      bgColorMultiplier += 4;
+      bgColorMultiplier += 5;
       ultraThemeBgFade.innerText = "Change";
       bgPurchase.play();
 
@@ -327,7 +327,7 @@ superThemeBgFade.addEventListener("click", function() {
     if (totalMoney >= 2000) {
       totalMoney -= 2000;
       moneySpent.innerText = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-      bgColorMultiplier += 4;
+      bgColorMultiplier += 3.5;
       superThemeBgFade.innerText = "Change";
       bgPurchase.play();
 
@@ -651,18 +651,36 @@ lbSpin.addEventListener('click', function () {
 
 // Crypto Update
 
-// let buyDogeCoin = document.querySelector('.buy-dogecoin');
-// let buyBitcoin = document.querySelector('.buy-bitcoin');
-// let buyEthereum = document.querySelector('.buy-ethereum');
+let crypto = 0;
 
-// let dogeCoinOwned = document.querySelector('.dogecoin-owned');
-// let bitcoinOwned = document.querySelector('.bitcoin-owned');
-// let ethereumOwned = document.querySelector('.ethereum-owned');
+let dogecoinCryptoOwned = 0;
+let bitcoinCryptoOwned = 0;
+let ethereumCryptoOwned = 0;
 
-// let dogeCoinGiveMoney = 0;
-// let bitcoinGiveMoney = 0;
-// let ethereumGiveMoney = 0;
+let dogecoinPrice = 1000;
+let bitcoinPrice = 5000;
+let ethereumPrice = 10000;
 
-// let dogecoinUpgrade = document.querySelector('');
-// let bitcoinUpgrade = document.querySelector('');
-// let ethereumUpgrade = document.querySelector('');
+let buyDogeCoin = document.querySelector('.buy-dogecoin');
+let buyBitcoin = document.querySelector('.buy-bitcoin');
+let buyEthereum = document.querySelector('.buy-ethereum');
+
+let dogeCoinOwned = document.querySelector('.dogecoin-owned');
+let bitcoinOwned = document.querySelector('.bitcoin-owned');
+let ethereumOwned = document.querySelector('.ethereum-owned');
+
+let dogeCoinGiveMoney = 10;
+let bitcoinGiveMoney = 75;
+let ethereumGiveMoney = 200;
+
+let dogecoinUpgrade = document.querySelector('');
+let bitcoinUpgrade = document.querySelector('');
+let ethereumUpgrade = document.querySelector('');
+
+buyDogeCoin.addEventListener('click', function () {
+  if (totalMoney >= dogecoinPrice) {
+    totalMoney -= dogecoinPrice;
+    dogecoinCryptoOwned += 1;
+    
+  }
+});

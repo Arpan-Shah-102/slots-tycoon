@@ -24,7 +24,7 @@ Check it out at https://arpan-shah-102.github.io/slots-tycoon/ <br/>
 #### Crypto Update V2.55
 1. Add Bitcoin, Ethereum, and Dogecoin [FINISHED]
 2. Add new currency [FINSIHED]
-3. Add crypto mining
+3. Add crypto mining [PROGRESS]
 4. Add crypto bonueses
 5. Add crypto shop
 6. Add cryptocurrency specific upgrades

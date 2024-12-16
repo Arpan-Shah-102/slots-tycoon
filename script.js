@@ -467,7 +467,7 @@ const itemShopPrice = [10, 500, 1000, 50, 50, 50, 200, 100, 20, 150, 3000, 500, 
 const itemShopItems = ["💩", "🍣", "🐲", "😺", "🐶", "🐔", "🐮", "🐷", "🐰", "🐵", "🍪", "🍕", "🍔", "🍟", "🍫", "🍤", "🍩", "🍜"];
 
 const buttons = document.querySelectorAll('.items > div > button');
-const colectibles = document.querySelector('.collectibles');
+const colectibles = document.querySelector('.collect-food');
 
 buttons.forEach((button, index) => {
   button.addEventListener('click', function() {
@@ -519,7 +519,7 @@ let tenThousandTrophy = document.querySelector('.tenK > button');
 let hundredThousandTrophy = document.querySelector('.oneHundredK > button');
 let millionTrophy = document.querySelector('.oneMillion > button');
 
-let ownedTrophies = document.querySelector('.owned-trophies');
+let ownedTrophies = document.querySelector('.normal-trophies');
 
 tenThousandTrophy.addEventListener('click', function() {
   if (totalMoney >= 10000) {
@@ -651,36 +651,53 @@ lbSpin.addEventListener('click', function () {
 
 // Crypto Update
 
-let crypto = 0;
+// let crypto = 0;
+// let perClickCrypto = 0;
 
-let dogecoinCryptoOwned = 0;
-let bitcoinCryptoOwned = 0;
-let ethereumCryptoOwned = 0;
+// let dogecoinCryptoOwned = 0;
+// let bitcoinCryptoOwned = 0;
+// let ethereumCryptoOwned = 0;
 
-let dogecoinPrice = 1000;
-let bitcoinPrice = 5000;
-let ethereumPrice = 10000;
+// let cryptoMine = document.querySelector('.crypto-mine');
+// let cryptoAutoMine = document.querySelector('.crypto-auto-mine');
+// let totalCryptoElement = document.querySelector('.total-crypto');
+// let cryptoPerClick = document.querySelector('.crypto-per-click');
 
-let buyDogeCoin = document.querySelector('.buy-dogecoin');
-let buyBitcoin = document.querySelector('.buy-bitcoin');
-let buyEthereum = document.querySelector('.buy-ethereum');
+// let dogecoinPrice = 1000;
+// let bitcoinPrice = 5000;
+// let ethereumPrice = 10000;
 
-let dogeCoinOwned = document.querySelector('.dogecoin-owned');
-let bitcoinOwned = document.querySelector('.bitcoin-owned');
-let ethereumOwned = document.querySelector('.ethereum-owned');
+// let buyDogeCoin = document.querySelector('.buy-dogecoin');
+// let buyBitcoin = document.querySelector('.buy-bitcoin');
+// let buyEthereum = document.querySelector('.buy-ethereum');
 
-let dogeCoinGiveMoney = 10;
-let bitcoinGiveMoney = 75;
-let ethereumGiveMoney = 200;
+// let dogeCoinOwned = document.querySelector('.dogecoin-owned');
+// let bitcoinOwned = document.querySelector('.bitcoin-owned');
+// let ethereumOwned = document.querySelector('.ethereum-owned');
 
-let dogecoinUpgrade = document.querySelector('');
-let bitcoinUpgrade = document.querySelector('');
-let ethereumUpgrade = document.querySelector('');
+// let dogeCoinGiveMoney = 10;
+// let bitcoinGiveMoney = 75;
+// let ethereumGiveMoney = 200;
 
-buyDogeCoin.addEventListener('click', function () {
-  if (totalMoney >= dogecoinPrice) {
-    totalMoney -= dogecoinPrice;
-    dogecoinCryptoOwned += 1;
-    
-  }
-});
+// // let dogecoinUpgrade = document.querySelector('');
+// // let bitcoinUpgrade = document.querySelector('');
+// // let ethereumUpgrade = document.querySelector('');
+
+// cryptoMine.addEventListener('click', function () {
+//   crypto += (dogecoinCryptoOwned * dogeCoinGiveMoney);
+//   crypto += (bitcoinCryptoOwned * bitcoinGiveMoney);
+//   crypto += (ethereumCryptoOwned * ethereumGiveMoney);
+//   totalCryptoElement.innerText = crypto.toLocaleString();
+// });
+
+// buyDogeCoin.addEventListener('click', function () {
+//   if (totalMoney >= dogecoinPrice) {
+//     totalMoney -= dogecoinPrice;
+//     moneySpent.innerText = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+//     dogecoinCryptoOwned += 1;
+//     perClickCrypto += dogeCoinGiveMoney;
+//     dogeCoinOwned.innerText = `${dogecoinCryptoOwned} Coins Owned`;
+//     cryptoPerClick.innerText = `${perClickCrypto}`;
+//   }
+//   gameOverCheck();
+// });

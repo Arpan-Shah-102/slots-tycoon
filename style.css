@@ -167,6 +167,10 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  & > h1 {
+    margin: 0px;
+  }
 }
 
 .img-div {
@@ -518,4 +522,14 @@ h1 {
     display: flex;
     justify-content: center;
   }
+}
+
+/* Crypto */
+
+.title-crypto {
+  padding-bottom: 20px;
+}
+.crypto-main {
+  justify-content: space-evenly;
+  padding: 25px 30px;
 }

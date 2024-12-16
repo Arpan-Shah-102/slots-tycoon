@@ -10,6 +10,7 @@
 
   <body>
     <div class="holder">
+      <h1>Slot Machine</h1>
       <div class="img-div">
         <p class="number a">7️⃣</p>
         <p class="number b">7️⃣</p>
@@ -48,8 +49,8 @@
     </div>
 
     <div>
-      <h1>Collection</h1>
-      <div class="collectibles">
+      <h1>Food Collection</h1>
+      <div class="collectibles collect-food">
         <h1>💩</h1>
       </div>
     </div>
@@ -151,31 +152,31 @@
     </div>
 
     <div>
-        <h1>Background Shop</h1>
-        <div class="functions"><button class="teritry color-themes">Switch Color Theme</button></div>
-        <div class="backgrounds">
-            <div class="bg-shop-item red-orange">$1,000</div>
-            <div class="bg-shop-item green-yellow">$1,000</div>
-            <div class="bg-shop-item blue-purple">$1,000</div>
-            <div class="bg-shop-item super-theme">$2,000</div>
-            <div class="bg-shop-item ultra-theme">$3,000</div>
-        </div>
+      <h1>Background Shop</h1>
+      <div class="functions"><button class="teritry color-themes">Switch Color Theme</button></div>
+      <div class="backgrounds">
+        <div class="bg-shop-item red-orange">$1,000</div>
+        <div class="bg-shop-item green-yellow">$1,000</div>
+        <div class="bg-shop-item blue-purple">$1,000</div>
+        <div class="bg-shop-item super-theme">$2,000</div>
+        <div class="bg-shop-item ultra-theme">$3,000</div>
+      </div>
     </div>
 
     <div>
-        <h1>Stats</h1>
-        <div class="stats">
-            <h2>Luck - <span class="luck-stat">0.00</span>%</h2>
-            <h2>Income - $<span class="two-pair-stat">15.00</span>, $<span class="jackpot-stat">300.00</span></h2>
-            <h2>Spin - +$<span class="spin-stat">0.00</span></h2>
-            <h2>Food - +$<span class="food-stat">0.00</span></h2>
-            <h2>Background - +$<span class="bg-stat">0.00</span></h2>
-        </div>
+      <h1>Stats</h1>
+      <div class="stats">
+        <h2>Luck - <span class="luck-stat">0.00</span>%</h2>
+        <h2>Income - $<span class="two-pair-stat">15.00</span>, $<span class="jackpot-stat">300.00</span></h2>
+        <h2>Spin - +$<span class="spin-stat">0.00</span></h2>
+        <h2>Food - +$<span class="food-stat">0.00</span></h2>
+        <h2>Background - +$<span class="bg-stat">0.00</span></h2>
+      </div>
     </div>
 
     <div>
       <h1>Your Trophies</h1>
-      <div class="owned-trophies">
+      <div class="owned-trophies normal-trophies">
         <h1>💲</h1>
       </div>
       <h1>Trophies</h1>
@@ -200,6 +201,7 @@
 
     <div>
       <h1>Loot Box</h1>
+      <p style="text-align: center;">Get random backgrounds!</p>
       <h1 class="box-display">1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣🔟</h1>
       <div class="lb-btns">
         <button class="primary lb-spin">$500</button>
@@ -219,16 +221,26 @@
       </div>
     </div>
 
+    <!-- <div class="holder">
+      <h1 class="title-crypto">Crypto</h1>
+      <div class="upgrade-container crypto-coin-buy crypto-main"> 
+        <h2>Crypto: ₡<span class="total-crypto">0</span></h2>
+        <button class="primary crypto-mine">Mine</button>
+        <button class="secondary crypto-auto-mine">Auto Mine</button>
+        <h3>Crypto per click: ₡<span class="crypto-per-click">0</span></h3>
+      </div>
+    </div>
+
     <div>
-      <h1>Crypto</h1>
+      <h1>Buy Crypto</h1>
       <div class="functions">
         <div class="upgrade-container crypto-coin-buy">
           <h2>Dogecoin</h2>
           <div>
             <img src="./assets/crypto/dogecoin-logo.png" alt="Dogecoin">
           </div>
-          <h3>Buy 1 Coin</h3>
-          <button class="primary buy-dogecoin">$1,000</button>
+          <h3>+10 Crypto</h3>
+          <button class="secondary buy-dogecoin">$1,000</button>
           <h3 class="dogecoin-owned">0 Coins Owned</h3>
         </div>
         <div class="upgrade-container crypto-coin-buy">
@@ -236,8 +248,8 @@
           <div>
             <img src="./assets/crypto/bitcoin-logo.png" alt="Bitcoin">
           </div>
-          <h3>Buy 1 Coin</h3>
-          <button class="primary buy-bitcoin">$5,000</button>
+          <h3>+75 Crypto</h3>
+          <button class="secondary buy-bitcoin">$5,000</button>
           <h3 class="bitcoin-owned">0 Coins Owned</h3>
         </div>
         <div class="upgrade-container crypto-coin-buy">
@@ -245,12 +257,193 @@
           <div>
             <img src="./assets/crypto/ethereum-logo.png" alt="Ethereum">
           </div>
-          <h3>Buy 1 Coin</h3>
-          <button class="primary buy-ethereum">$10,000</button>
+          <h3>+200 Crypto</h3>
+          <button class="secondary buy-ethereum">$10,000</button>
           <h3 class="ethereum-owned">0 Coins Owned</h3>
         </div>
       </div>
     </div>
+
+    <div>
+      <h1>Mine Crypto</h1>
+      <div class="functions">
+        <div class="upgrade-container crypto-coin-buy">
+          <h2>Mine Dogecoin</h2>
+          <div>
+            <img src="./assets/crypto/dogecoin-logo.png" alt="Dogecoin">
+          </div>
+          <h3>Level 1 > 2</h3>
+          <h3>₡10 > ₡15</h3>
+          <button class="secondary mine-dogecoin">₡100</button>
+        </div>
+        <div class="upgrade-container crypto-coin-buy">
+          <h2>Mine Bitcoin</h2>
+          <div>
+            <img src="./assets/crypto/bitcoin-logo.png" alt="Bitcoin">
+          </div>
+          <h3>Level 1 > 2</h3>
+          <h3>₡75 > ₡112</h3>
+          <button class="secondary mine-bitcoin">₡500</button>
+        </div>
+        <div class="upgrade-container crypto-coin-buy">
+          <h2>Mine Ethereum</h2>
+          <div>
+            <img src="./assets/crypto/ethereum-logo.png" alt="Ethereum">
+          </div>
+          <h3>Level 1 > 2</h3>
+          <h3>₡200 > ₡300</h3>
+          <button class="secondary mine-ethereum">₡1000</button>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h1>NFT Collection</h1>
+      <div class="collectibles">
+        <h1>😁</h1>
+      </div>
+    </div>
+
+    <div class="shop">
+      <h1>NFT Shop</h1>
+      <div class="items">
+        <div class="poop item-1">
+          <h2>Happy</h2>
+          <h1>😁</h1>
+          <button disabled class="disabled teritry">$0</button>
+        </div>
+        <div class="alien item-2">
+          <h2>Smirk</h2>
+          <h1>😏</h1>
+          <button class="teritry">₡500</button>
+        </div>
+        <div class="dragon item-3">
+          <h2>At-Ease</h2>
+          <h1>😌</h1>
+          <button class="teritry">₡100</button>
+        </div>
+        <div class="cat item-4">
+          <h2>Silly</h2>
+          <h1>😛</h1>
+          <button class="teritry">₡100</button>
+        </div>
+        <div class="dog item-5">
+          <h2>Goofy</h2>
+          <h1>🤪</h1>
+          <button class="teritry">₡150</button>
+        </div>
+        <div class="chicken item-6">
+          <h2>Angry</h2>
+          <h1>😡</h1>
+          <button class="teritry">₡150</button>
+        </div>
+        <div class="cow item-7">
+          <h2>Sad</h2>
+          <h1>😟</h1>
+          <button class="teritry">₡200</button>
+        </div>
+        <div class="pig item-8">
+          <h2>Shocked</h2>
+          <h1>😨</h1>
+          <button class="teritry">₡250</button>
+        </div>
+        <div class="rabbit item-9">
+          <h2>Dead</h2>
+          <h1>😵</h1>
+          <button class="teritry">₡300</button>
+        </div>
+        <div class="monkey item-10">
+          <h2>Teeth</h2>
+          <h1>🦷</h1>
+          <button class="teritry">₡500</button>
+        </div>
+        <div class="robot item-11">
+          <h2>Bones</h2>
+          <h1>🦴</h1>
+          <button class="teritry">₡3,000</button>
+        </div>
+        <div class="skull item-12">
+          <h2>Mouth</h2>
+          <h1>👄</h1>
+          <button class="teritry">₡500</button>
+        </div>
+        <div class="bones item-13">
+          <h2>Feet</h2>
+          <h1>🦶</h1>
+          <button class="teritry">₡500</button>
+        </div>
+        <div class="mouth item-14">
+          <h2>Tounge</h2>
+          <h1>👅</h1>
+          <button class="teritry">₡500</button>
+        </div>
+        <div class="eyes item-15">
+          <h2>Eyes</h2>
+          <h1>👀</h1>
+          <button class="teritry">₡1,000</button>
+        </div>
+        <div class="brain item-16">
+          <h2>Lungs</h2>
+          <h1>🫁</h1>
+          <button class="teritry">₡3,000</button>
+        </div>
+        <div class="heart item-17">
+          <h2>Heart</h2>
+          <h1>🫀</h1>
+          <button class="teritry">₡5,000</button>
+        </div>
+        <div class="lungs item-18">
+          <h2>Brain</h2>
+          <h1>🧠</h1>
+          <button class="teritry">₡10,000</button>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h1>Crypto Stats</h1>
+      <div class="stats">
+        <h2>Dogecoin - +₡<span class="luck-stat">0.00</span></h2>
+        <h2>Bitcoin - +₡<span class="two-pair-stat">15.00</span></h2>
+        <h2>Ethereum - +₡<span class="spin-stat">0.00</span></h2>
+        <h2>NFTs - +₡<span class="food-stat">0.00</span></h2>
+      </div>
+    </div>
+
+    <div>
+      <h1>Your Crypto Trophies</h1>
+      <div class="owned-trophies">
+        <h1>🪙</h1>
+      </div>
+      <h1>Crypto Trophies</h1>
+      <div class="trophies">
+        <div class="tenK">
+          <h2>₡100,000</h2>
+          <h1>💵</h1>
+          <button class="secondary">₡100,000</button>
+        </div>
+        <div class="oneHundredK">
+          <h2>₡1,000,000</h2>
+          <h1>💸</h1>
+          <button class="secondary">₡1,000,000</button>
+        </div>
+        <div class="oneMillion">
+          <h2>₡10,000,000</h2>
+          <h1>💳</h1>
+          <button class="secondary">₡10,000,000</button>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h1>Crypto Loot Box</h1>
+      <p style="text-align: center;">Get random background music!</p>
+      <h1 class="box-display">1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣🔟</h1>
+      <div class="lb-btns">
+        <button class="primary lb-spin">₡1,000</button>
+      </div>
+      <p class="lb-terminal">Open to win!</p>
+    </div> -->
 
     <div class="prize-log">
       <h1>Prize Log</h1>

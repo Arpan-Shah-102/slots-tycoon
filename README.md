@@ -12,6 +12,7 @@ Introducing, Slots Tycoon! Slots tycoon combines the fun gameplay of a tycoon an
 This is the next best hit on the market! <br/>
 <br/>
 Check it out at https://arpan-shah-102.github.io/slots-tycoon/ <br/>
+Or at https://slots-tycoon.netlify.app <br/>
 
 ### Crypto Update V2.45
 - Add Bitcoin, Ethereum, and Dogecoin
@@ -36,3 +37,6 @@ Check it out at https://arpan-shah-102.github.io/slots-tycoon/ <br/>
 8. Add better goals for beating the game
 9. Bug Fixes
 10. Added auto-mining
+
+### The Actual Final update V3.5
+11. Add log-in and sign-up system (ONLY AVALIBLE ON NETLIFY)

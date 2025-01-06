@@ -13,27 +13,26 @@ This is the next best hit on the market! <br/>
 <br/>
 Check it out at https://arpan-shah-102.github.io/slots-tycoon/ <br/>
 
-### The Preperations Update V2.1
-- Fixed some small bugs <br/>
-- Replaced a background <br/>
-- Added a button for new players to help them find the shops <br/>
-- Made preperations for crypto update <br/>
-- Added new theme <br/>
+### Crypto Update V2.45
+- Add Bitcoin, Ethereum, and Dogecoin
+- Add crypto lootbox
+- Add crypto trophies
+- Add the car shop
+- Change NFTs to food mall
+- Add NFTs back to crypto update
+- Add a navigation sidebar
 
 ### Future Updates
-#### Crypto Update V2.55
-1. Add Bitcoin, Ethereum, and Dogecoin [FINISHED]
-2. Add new currency [FINSIHED]
-3. Add crypto mining [PROGRESS]
-4. Add crypto bonueses
-5. Add crypto shop
-6. Add cryptocurrency specific upgrades
-7. Change NFTs to food mall
-8. Add NFTs back to crypto update
+#### Crypto Update Expansion pack V2.6
+1. Added SFX
+2. Added crypto mining
+3. Changed crypto lootbox to give different rewards
 
-#### The Final Update V2.75
-9. Saving data with cookies
-10. Saving data to json files
-11. Loading data from json files
-12. Add better goals for beating the game
-13. Bug Fixes
+#### The Final Update V3
+4. Achievment system
+5. Saving data with cookies
+6. Saving data to json files
+7. Loading data from json files
+8. Add better goals for beating the game
+9. Bug Fixes
+10. Added auto-mining

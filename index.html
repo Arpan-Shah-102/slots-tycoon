@@ -9,7 +9,33 @@
   </head>
 
   <body>
-    <div class="holder">
+    <div class="menu-holder">
+      <a class="menu">Menu</a>
+    </div>
+    <nav class="navigation">
+      <p class="slot-machine-btn">Slot Machine</p>
+      <p class="upgrades-btn">Upgrades</p>
+      <p class="food-collection-btn">Food Collection</p>
+      <p class="food-shop-btn">Food Shop</p>
+      <p class="background-shop-btn">Background Shop</p>
+      <p class="stats-btn">Stats</p>
+      <p class="trophies-btn">Trophies</p>
+      <p class="loot-box-btn">Loot Box</p>
+      <p class="options-btn">Options</p>
+      <p class="crypto-mine-btn">Crypto</p>
+      <p class="buy-crypto-btn">Buy Crypto</p>
+      <p class="mine-crypto-btn">Mine Crypto</p>
+      <p class="nft-collection-btn">NFT Collection</p>
+      <p class="nft-shop-btn">NFT Shop</p>
+      <p class="cars-btn">Car Shop</p>
+      <p class="crypto-stats-btn">Crypto Stats</p>
+      <p class="crypto-trophies-btn">Crypto Trophies</p>
+      <p class="crypto-loot-box-btn">Crypto Loot Box</p>
+      <p class="prize-log-btn">Prize Log</p>
+      <p class="credits-btn">Credits</p>
+    </nav>
+
+    <div class="holder" id="slot-machine">
       <h1>Slot Machine</h1>
       <div class="img-div">
         <p class="number a">7️⃣</p>
@@ -23,7 +49,6 @@
           <p class="terminal">Spin to win!</p>
           <p class="money">Money: $<span>5,000.00</span></p>
         </div>
-        <button class="upg-redirect-btn teritry">Upgrades</button>
       </div>
     </div>
 
@@ -48,14 +73,14 @@
       </div>
     </div>
 
-    <div>
+    <div id="food-collection">
       <h1>Food Collection</h1>
       <div class="collectibles collect-food">
         <h1>💩</h1>
       </div>
     </div>
 
-    <div class="shop">
+    <div class="shop" id="food-shop">
       <h1>Food Shop</h1>
       <div class="items food">
         <div class="poop item-1">
@@ -151,7 +176,7 @@
       </div>
     </div>
 
-    <div>
+    <div id="background-shop">
       <h1>Background Shop</h1>
       <div class="functions"><button class="teritry color-themes">Switch Color Theme</button></div>
       <div class="backgrounds">
@@ -163,7 +188,7 @@
       </div>
     </div>
 
-    <div>
+    <div id="stats">
       <h1>Stats</h1>
       <div class="stats">
         <h2>Luck - <span class="luck-stat">0.00</span>%</h2>
@@ -174,7 +199,7 @@
       </div>
     </div>
 
-    <div>
+    <div id="trophies">
       <h1>Your Trophies</h1>
       <div class="owned-trophies normal-trophies">
         <h1>💲</h1>
@@ -199,7 +224,7 @@
       </div>
     </div>
 
-    <div>
+    <div id="loot-box">
       <h1>Loot Box</h1>
       <p style="text-align: center;">Get random backgrounds!</p>
       <h1 class="box-display">1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣🔟</h1>
@@ -209,7 +234,7 @@
       <p class="lb-terminal">Open to win!</p>
     </div>
 
-    <div>
+    <div id="options">
       <h1>Options</h1>
       <div class="functions">
         <button class="mute teritry">Mute SFX</button>
@@ -221,17 +246,17 @@
       </div>
     </div>
 
-    <!-- <div class="holder">
+    <div class="holder" id="crypto-mine">
       <h1 class="title-crypto">Crypto</h1>
       <div class="upgrade-container crypto-coin-buy crypto-main"> 
-        <h2>Crypto: ₡<span class="total-crypto">0.0</span></h2>
-        <button class="primary crypto-mine">Mine</button> -->
+        <h2>Crypto: ₡<span class="total-crypto">0</span></h2>
+        <button class="primary crypto-mine">Mine</button>
         <!-- <button class="secondary crypto-auto-mine">Auto Mine</button> -->
-        <!-- <h3>Crypto per click: ₡<span class="crypto-per-click">0.0</span></h3>
+        <h3>Crypto per click: ₡<span class="crypto-per-click">0</span></h3>
       </div>
     </div>
 
-    <div>
+    <div id="buy-crypto">
       <h1>Buy Crypto</h1>
       <div class="functions">
         <div class="upgrade-container crypto-coin-buy">
@@ -239,8 +264,8 @@
           <div>
             <img src="./assets/crypto/dogecoin-logo.png" alt="Dogecoin">
           </div>
-          <h3>+10.0 Crypto</h3>
-          <button class="secondary buy-dogecoin">$1,000.0</button>
+          <h3>+10 Crypto Each</h3>
+          <button class="secondary buy-dogecoin">$1,000</button>
           <h3 class="dogecoin-owned">0 Coins Owned</h3>
         </div>
         <div class="upgrade-container crypto-coin-buy">
@@ -248,8 +273,8 @@
           <div>
             <img src="./assets/crypto/bitcoin-logo.png" alt="Bitcoin">
           </div>
-          <h3>+75.0 Crypto</h3>
-          <button class="secondary buy-bitcoin">$5,000.0</button>
+          <h3>+75 Crypto Each</h3>
+          <button class="secondary buy-bitcoin">$5,000</button>
           <h3 class="bitcoin-owned">0 Coins Owned</h3>
         </div>
         <div class="upgrade-container crypto-coin-buy">
@@ -257,14 +282,14 @@
           <div>
             <img src="./assets/crypto/ethereum-logo.png" alt="Ethereum">
           </div>
-          <h3>+200.0 Crypto</h3>
-          <button class="secondary buy-ethereum">$10,000.0</button>
+          <h3>+200 Crypto Each</h3>
+          <button class="secondary buy-ethereum">$10,000</button>
           <h3 class="ethereum-owned">0 Coins Owned</h3>
         </div>
       </div>
     </div>
 
-    <div>
+    <div id="mine-crypto">
       <h1>Mine Crypto</h1>
       <div class="functions">
         <div class="upgrade-container crypto-coin-buy">
@@ -273,8 +298,8 @@
             <img src="./assets/crypto/dogecoin-logo.png" alt="Dogecoin">
           </div>
           <h3 class="doge-lvl">Level 1 > 2</h3>
-          <h3 class="doge-benefit">₡10.0 > ₡15.0</h3>
-          <button class="secondary mine-dogecoin">₡100.0</button>
+          <h3 class="doge-benefit">₡10 > ₡15</h3>
+          <button class="secondary mine-dogecoin">₡1,000</button>
         </div>
         <div class="upgrade-container crypto-coin-buy">
           <h2>Mine Bitcoin</h2>
@@ -282,8 +307,8 @@
             <img src="./assets/crypto/bitcoin-logo.png" alt="Bitcoin">
           </div>
           <h3 class="bitcoin-lvl">Level 1 > 2</h3>
-          <h3 class="bitcoin-benefit">₡75.0 > ₡112.5</h3>
-          <button class="secondary mine-bitcoin">₡500.0</button>
+          <h3 class="bitcoin-benefit">₡75 > ₡112</h3>
+          <button class="secondary mine-bitcoin">₡5,000</button>
         </div>
         <div class="upgrade-container crypto-coin-buy">
           <h2>Mine Ethereum</h2>
@@ -291,20 +316,20 @@
             <img src="./assets/crypto/ethereum-logo.png" alt="Ethereum">
           </div>
           <h3 class="ethereum-lvl">Level 1 > 2</h3>
-          <h3 class="ethereum-benefit">₡200.0 > ₡300.0</h3>
-          <button class="secondary mine-ethereum">₡1,.0000.0</button>
+          <h3 class="ethereum-benefit">₡200 > ₡300</h3>
+          <button class="secondary mine-ethereum">₡10,000</button>
         </div>
       </div>
     </div>
 
-    <div>
+    <div id="nft-collection">
       <h1>NFT Collection</h1>
       <div class="collectibles collect-nft">
         <h1>😁</h1>
       </div>
     </div>
 
-    <div class="shop">
+    <div class="shop" id="nft-shop">
       <h1>NFT Shop</h1>
       <div class="items nft">
         <div class="poop item-1">
@@ -400,12 +425,11 @@
       </div>
     </div>
     
-    <div>
+    <div id="cars">
       <h1>Car Shop</h1>
-        <div class="shop">
-          <div class="items">
+        <div class="shop items">
           <div class="car-shop bike">
-            <h1>🚲</h1>
+            <h1>🏍️</h1>
             <h3>₡10,000</h3>
           </div>
           <div class="car-shop car">
@@ -420,35 +444,35 @@
       </div>
     </div>
 
-    <div>
+    <div id="crypto-stats">
       <h1>Crypto Stats</h1>
       <div class="stats">
-        <h2>Dogecoin - +₡<span class="dc-stat">0.0</span></h2>
-        <h2>Bitcoin - +₡<span class="bc-stat">0.0</span></h2>
-        <h2>Ethereum - +₡<span class="et-stat">0.0</span></h2>
-        <h2>NFTs - +₡<span class="nft-stat">0.0</span></h2>
-        <h2>Cars - +₡<span class="car-stat">0.0</span></h2>
+        <h2>Dogecoin - +₡<span class="dc-stat">0</span></h2>
+        <h2>Bitcoin - +₡<span class="bc-stat">0</span></h2>
+        <h2>Ethereum - +₡<span class="et-stat">0</span></h2>
+        <h2>NFTs - +₡<span class="nft-stat">0</span></h2>
+        <h2>Cars - +₡<span class="car-stat">0</span></h2>
       </div>
     </div>
 
-    <div>
+    <div id="crypto-trophies">
       <h1>Your Crypto Trophies</h1>
-      <div class="owned-trophies">
+      <div class="owned-crypto-trophies owned-trophies">
         <h1>🪙</h1>
       </div>
       <h1>Crypto Trophies</h1>
       <div class="trophies">
-        <div class="tenK">
+        <div class="oneHundredKCrypto">
           <h2>₡100,000</h2>
           <h1>💵</h1>
           <button class="secondary">₡100,000</button>
         </div>
-        <div class="oneHundredK">
+        <div class="oneMillionCrypto">
           <h2>₡1,000,000</h2>
           <h1>💸</h1>
           <button class="secondary">₡1,000,000</button>
         </div>
-        <div class="oneMillion">
+        <div class="tenMillionCrypto">
           <h2>₡10,000,000</h2>
           <h1>💳</h1>
           <button class="secondary">₡10,000,000</button>
@@ -456,26 +480,26 @@
       </div>
     </div>
 
-    <div>
+    <div id="crypto-loot-box">
       <h1>Crypto Loot Box</h1>
       <p style="text-align: center;">Get random background music!</p>
-      <h1 class="box-display">1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣🔟</h1>
+      <h1 class="crypto-box-display">1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣🔟</h1>
       <div class="lb-btns">
-        <button class="primary lb-spin">₡1,000</button>
+        <button class="primary crypto-lb-spin">₡5,000</button>
       </div>
-      <p class="lb-terminal">Open to win!</p>
-    </div> -->
+      <p class="crypto-lb-terminal lb-terminal">Open to win!</p>
+    </div>
 
-    <div class="prize-log">
+    <div class="prize-log" id="prize-log">
       <h1>Prize Log</h1>
       <div class="prize-container">
         <p>Spin 0 - $5,000.00 - 7️⃣ 7️⃣ 7️⃣</p>
       </div>
     </div>
 
-    <div class="credits">
+    <div class="credits" id="credits">
       <h2>Credits</h2>
-      <p>Creator, Developer, Manager, Updater - <em>Arpan Shah</em></p>
+      <p>Creator, Developer, Manager, Updater, Programmer - <em><b>Arpan Shah</b></em></p>
       <p><small>Special Thanks to <em>Carson Montes</em> for providing background images.</small></p>
       <p><small>Special Thanks to <em>Mason Reynolds</em> for making the background music.</small></p>
       <p><small>Special Thanks to <em>Carter Ward</em> & <em>John Hagan</em> for suggesting some ideas.</small></p>
@@ -494,7 +518,6 @@
       <p>Refresh to Restart!</p>
       <button class="secondary coninue-playing">Continue Playing</button>
     </div>
-
     <script src="./script.js"></script>
   </body>
 </html>

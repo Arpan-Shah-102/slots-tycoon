@@ -4,6 +4,9 @@
   margin: 0px;
   margin: 0px;
 }
+html {
+  scroll-behavior: smooth;
+}
 button {
   border-radius: 8px;
   border: 2px solid goldenrod;
@@ -506,7 +509,7 @@ h1 {
 }
 
 .crypto-coin-buy {
-  height: 250px;
+  height: 300px;
   width: 150px;
   text-align: center;
 
@@ -559,4 +562,140 @@ h1 {
     opacity: 0.5;
     transform: rotate(4deg) translateY(4px);
   }
+}
+.bought-car {
+  height: 150px;
+  width: 100px;
+  margin: 20px;
+  padding: 20px;
+  transition: all 0.3s;
+
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  cursor: not-allowed;
+
+  & * {
+    margin: 10px;
+    padding: 0px;
+    text-align: center;
+  }
+}
+
+.crypto-bg-1 {
+  background-image: url("./assets/crypto/backgrounds/bg-1.png");
+  color: white;
+  text-shadow: 0px 0px 5px black;
+}
+.crypto-bg-2 {
+  background-image: url("./assets/crypto/backgrounds/bg-2.png");
+  color: white;
+  text-shadow: 0px 0px 5px black;
+}
+.crypto-bg-3 {
+  background-image: url("./assets/crypto/backgrounds/bg-3.png");
+  color: white;
+  text-shadow: 0px 0px 5px black;
+}
+.crypto-bg-4 {
+  background-image: url("./assets/crypto/backgrounds/bg-4.png");
+  color: white;
+  text-shadow: 0px 0px 5px black;
+}
+.crypto-bg-5 {
+  background-image: url("./assets/crypto/backgrounds/bg-5.png");
+  color: white;
+  text-shadow: 0px 0px 5px black;
+}
+.crypto-bg-6 {
+  background-image: url("./assets/crypto/backgrounds/bg-6.png");
+  color: white;
+  text-shadow: 0px 0px 5px black;
+}
+.crypto-bg-7 {
+  background-image: url("./assets/crypto/backgrounds/bg-7.png");
+  color: white;
+  text-shadow: 0px 0px 5px black;
+}
+.crypto-bg-8 {
+  background-image: url("./assets/crypto/backgrounds/bg-8.png");
+  color: white;
+  text-shadow: 0px 0px 5px black;
+}
+.crypto-bg-9 {
+  background-image: url("./assets/crypto/backgrounds/bg-9.png");
+  color: white;
+  text-shadow: 0px 0px 5px black;
+}
+.crypto-bg-10 {
+  background-image: url("./assets/crypto/backgrounds/bg-10.png");
+  color: white;
+  text-shadow: 0px 0px 5px black;
+}
+
+.menu-holder {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #000000a0;
+  width: 100vw;
+  height: 40px;
+  padding-top: 10px;
+}
+.menu {
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  padding: 5px 20px 0px 20px;
+  font-size: 30px;
+  transition: all 0.3s;
+  text-shadow: none;
+
+  &:hover {
+    color: goldenrod;
+  }
+  &:active {
+    border-bottom: 1px solid goldenrod;
+  }
+}
+.navigation {
+  position: fixed;
+  top: 50px;
+  left: -250px;
+  /* height: 100%; */
+  height: calc(100vh - 80px);
+  color: #fff;
+  transition: 0.5s;
+  width: 250px;
+  background-color: #00000075;
+  padding: 15px 0px;
+  overflow-y: scroll;
+
+  scrollbar-width: thin;
+  scrollbar-color: #daa52075 #0000;
+
+  p {
+    margin: 10px 35px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 16px;
+    display: inline-block;
+    text-decoration: underline;
+    text-shadow: none;
+
+    &:hover {
+      color: goldenrod;
+    }
+    &:active {
+      text-decoration: none;
+    }
+  }
+}
+.nav-holder {
+  z-index: 101;
+  background-color: white;
+  width: 100vw;
+}
+.show-nav {
+  left: 0px;
 }

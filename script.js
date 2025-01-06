@@ -33,7 +33,7 @@ let c = document.querySelector('.c');
 
 let body = document.querySelector('body');
 let colorThemes = document.querySelector('.color-themes');
-const colors = ['black', 'white', 'red', 'green', 'teal', 'blue', 'purple']  // , 'red-orange', 'green-yellow', 'blue-purple'];
+const colors = ['black', 'white', 'red', 'green', 'teal', 'blue', 'purple'];
 let pointer = 0;
 
 const slotSound = new Audio('./assets/sounds/slot-spin-sound.mp3');
@@ -180,10 +180,17 @@ function spinSlot(iterations, autoSpinOn) {
   }
 }
 
-const upgradeBtnRedirect = document.querySelector('.upg-redirect-btn');
-upgradeBtnRedirect.addEventListener("click", function () {
-  upgradeBtnRedirect.scrollIntoView({ behavior: "smooth" });
-  window.location.hash = 'upgrades';
+const menu = document.querySelector('.menu');
+const navigation = document.querySelector('.navigation');
+menu.addEventListener('click', function () {
+  navigation.classList.toggle('show-nav');
+});
+const navButtons = ["slot-machine", "upgrades", "food-collection", "food-shop", "background-shop", "stats", "trophies", "loot-box", "options", "crypto-mine", "buy-crypto", "mine-crypto", "nft-collection", "nft-shop", "cars", "crypto-stats", "crypto-trophies", "crypto-loot-box", "prize-log", "credits"];
+navButtons.forEach((item, index) => {
+  document.querySelector(`.${item}-btn`).addEventListener("click", function () {
+    document.querySelector(`.${item}-btn`).scrollIntoView({ behavior: "smooth" });
+    window.location.hash = item;
+  });
 });
 
 colorThemes.addEventListener("click", function () {
@@ -633,12 +640,12 @@ lbSpin.addEventListener('click', function () {
         body.classList.add(rewardListLb[randomIndex]);
 
         rewardListLb[randomIndex] = 100;
-        lbTerminal.innerText = `You won background #${randomIndex+1}!`
-        lolBgNegativeMultiplier = 5
+        lbTerminal.innerText = `You won background #${randomIndex+1}!`;
+        lolBgNegativeMultiplier = 5;
       } else {
         totalMoney += 100;
         moneySpent.innerText = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        lbTerminal.innerText = `You won $100!`
+        lbTerminal.innerText = `You won $100!`;
       }
       lbSpin.disabled = false;
       updateStats();
@@ -651,144 +658,309 @@ lbSpin.addEventListener('click', function () {
 
 // Crypto Update
 
-// let crypto = 0;
-// let perClickCrypto = 0;
+let crypto = 0;
+let perClickCrypto = 0;
+let cryptoLolBgNegativeMultiplier = 1;
 
-// let dogecoinPerClick = 0;
-// let bitcoinPerClick = 0;
-// let ethereumPerClick = 0;
+let dogecoinPerClick = 0;
+let bitcoinPerClick = 0;
+let ethereumPerClick = 0;
 
-// let dogecoinCryptoOwned = 0;
-// let bitcoinCryptoOwned = 0;
-// let ethereumCryptoOwned = 0;
+let dogecoinCryptoOwned = 0;
+let bitcoinCryptoOwned = 0;
+let ethereumCryptoOwned = 0;
 
-// let cryptoMine = document.querySelector('.crypto-mine');
-// // let cryptoAutoMine = document.querySelector('.crypto-auto-mine');
-// let totalCryptoElement = document.querySelector('.total-crypto');
-// let cryptoPerClick = document.querySelector('.crypto-per-click');
+let cryptoMine = document.querySelector('.crypto-mine');
+// let cryptoAutoMine = document.querySelector('.crypto-auto-mine');
+let totalCryptoElement = document.querySelector('.total-crypto');
+let cryptoPerClick = document.querySelector('.crypto-per-click');
 
-// let dogecoinPrice = 1000;
-// let bitcoinPrice = 5000;
-// let ethereumPrice = 10000;
+let dogecoinPrice = 1000;
+let bitcoinPrice = 5000;
+let ethereumPrice = 10000;
 
-// let buyDogeCoin = document.querySelector('.buy-dogecoin');
-// let buyBitcoin = document.querySelector('.buy-bitcoin');
-// let buyEthereum = document.querySelector('.buy-ethereum');
+let buyDogeCoin = document.querySelector('.buy-dogecoin');
+let buyBitcoin = document.querySelector('.buy-bitcoin');
+let buyEthereum = document.querySelector('.buy-ethereum');
 
-// let dogeCoinOwned = document.querySelector('.dogecoin-owned');
-// let bitcoinOwned = document.querySelector('.bitcoin-owned');
-// let ethereumOwned = document.querySelector('.ethereum-owned');
+let dogeCoinOwned = document.querySelector('.dogecoin-owned');
+let bitcoinOwned = document.querySelector('.bitcoin-owned');
+let ethereumOwned = document.querySelector('.ethereum-owned');
 
-// let dogeCoinGiveMoney = 10;
-// let bitcoinGiveMoney = 75;
-// let ethereumGiveMoney = 200;
+let dogeCoinGiveMoney = 10;
+let bitcoinGiveMoney = 75;
+let ethereumGiveMoney = 200;
 
-// let dogecoinStatLabel = document.querySelector('.dc-stat');
-// let bitcoinStatLabel = document.querySelector('.bc-stat');
-// let ethereumStatLabel = document.querySelector('.et-stat');
-// let nftStatLabel = document.querySelector('.nft-stat');
-// let carStatLabel = document.querySelector('.car-stat');
+let dogecoinStatLabel = document.querySelector('.dc-stat');
+let bitcoinStatLabel = document.querySelector('.bc-stat');
+let ethereumStatLabel = document.querySelector('.et-stat');
+let nftStatLabel = document.querySelector('.nft-stat');
+let carStatLabel = document.querySelector('.car-stat');
 
-// let nftBonus = 0;
+let nftBonus = 0;
+let carBonus = 0;
 
-// cryptoMine.addEventListener('click', function () {
-//   crypto += (dogecoinCryptoOwned * dogeCoinGiveMoney);
-//   crypto += (bitcoinCryptoOwned * bitcoinGiveMoney);
-//   crypto += (ethereumCryptoOwned * ethereumGiveMoney);
-//   totalCryptoElement.innerText = crypto.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-// });
+cryptoMine.addEventListener('click', function () {
+  crypto += (dogecoinCryptoOwned * dogeCoinGiveMoney * cryptoLolBgNegativeMultiplier);
+  crypto += (bitcoinCryptoOwned * bitcoinGiveMoney * cryptoLolBgNegativeMultiplier);
+  crypto += (ethereumCryptoOwned * ethereumGiveMoney * cryptoLolBgNegativeMultiplier);
+  crypto += nftBonus * cryptoLolBgNegativeMultiplier;
+  crypto += carBonus * cryptoLolBgNegativeMultiplier;
+  totalCryptoElement.innerText = crypto.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+});
 
-// // let cryptoAutoCollect = false;
-// // cryptoAutoMine.addEventListener('click', function () {
-// //   cryptoAutoCollect = !cryptoAutoCollect;
+// let cryptoAutoCollect = false;
+// cryptoAutoMine.addEventListener('click', function () {
+//   cryptoAutoCollect = !cryptoAutoCollect;
 
-// //   while (cryptoAutoCollect) {
-// //     setTimeout(function () {
-// //       crypto += (dogecoinCryptoOwned * dogeCoinGiveMoney);
-// //       crypto += (bitcoinCryptoOwned * bitcoinGiveMoney);
-// //       crypto += (ethereumCryptoOwned * ethereumGiveMoney);
-// //       totalCryptoElement.innerText = crypto.toLocaleString();
-// //     }, 1000);
-// //   }
-// // });
-
-// buyDogeCoin.addEventListener('click', function () {
-//   if (totalMoney >= dogecoinPrice) {
-//     totalMoney -= dogecoinPrice;
-//     moneySpent.innerText = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-//     dogecoinCryptoOwned += 1;
-//     dogecoinPerClick += dogeCoinGiveMoney;
-
-//     perClickCrypto = (dogecoinPerClick + bitcoinPerClick + ethereumPerClick);
-//     dogeCoinOwned.innerText = `${dogecoinCryptoOwned.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} Coins Owned`;
-//     cryptoPerClick.innerText = `${perClickCrypto.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`;
-//     dogecoinStatLabel.innerText = `${dogecoinPerClick.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`;
+//   while (cryptoAutoCollect) {
+//     setTimeout(function () {
+//       crypto += (dogecoinCryptoOwned * dogeCoinGiveMoney);
+//       crypto += (bitcoinCryptoOwned * bitcoinGiveMoney);
+//       crypto += (ethereumCryptoOwned * ethereumGiveMoney);
+//       totalCryptoElement.innerText = crypto.toLocaleString();
+//     }, 1000);
 //   }
-//   gameOverCheck();
 // });
 
-// buyBitcoin.addEventListener('click', function () {
-//   if (totalMoney >= bitcoinPrice) {
-//     totalMoney -= bitcoinPrice;
-//     moneySpent.innerText = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-//     bitcoinCryptoOwned += 1;
-//     bitcoinPerClick += bitcoinGiveMoney;
+buyDogeCoin.addEventListener('click', function () {
+  if (totalMoney >= dogecoinPrice) {
+    totalMoney -= dogecoinPrice;
+    moneySpent.innerText = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    dogecoinCryptoOwned += 1;
+    dogecoinPerClick += dogeCoinGiveMoney;
 
-//     perClickCrypto = (dogecoinPerClick + bitcoinPerClick + ethereumPerClick);
-//     bitcoinOwned.innerText = `${bitcoinCryptoOwned.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} Coins Owned`;
-//     cryptoPerClick.innerText = `${perClickCrypto.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`;
-//     bitcoinStatLabel.innerText = `${bitcoinPerClick.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`;
-//   }
-//   gameOverCheck();
-// });
+    perClickCrypto = (dogecoinPerClick + bitcoinPerClick + ethereumPerClick);
+    dogeCoinOwned.innerText = `${Math.trunc(dogecoinCryptoOwned)} Coins Owned`;
+    cryptoPerClick.innerText = `${Math.trunc(perClickCrypto)}`;
+    dogecoinStatLabel.innerText = `${Math.trunc(dogecoinPerClick)}`;
+  }
+  gameOverCheck();
+});
 
-// buyEthereum.addEventListener('click', function () {
-//   if (totalMoney >= ethereumPrice) {
-//     totalMoney -= ethereumPrice;
-//     moneySpent.innerText = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-//     ethereumCryptoOwned += 1;
-//     ethereumPerClick += ethereumGiveMoney;
+buyBitcoin.addEventListener('click', function () {
+  if (totalMoney >= bitcoinPrice) {
+    totalMoney -= bitcoinPrice;
+    moneySpent.innerText = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    bitcoinCryptoOwned += 1;
+    bitcoinPerClick += bitcoinGiveMoney;
 
-//     perClickCrypto = (dogecoinPerClick + bitcoinPerClick + ethereumPerClick);
-//     ethereumOwned.innerText = `${bitcoinCryptoOwned.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} Coins Owned`;
-//     cryptoPerClick.innerText = `${perClickCrypto.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`;
-//     ethereumStatLabel.innerText = `${ethereumPerClick.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`;
-//   }
-//   gameOverCheck();
-// });
+    perClickCrypto = (dogecoinPerClick + bitcoinPerClick + ethereumPerClick);
+    bitcoinOwned.innerText = `${Math.trunc(bitcoinCryptoOwned)} Coins Owned`;
+    cryptoPerClick.innerText = `${Math.trunc(perClickCrypto)}`;
+    bitcoinStatLabel.innerText = `${Math.trunc(bitcoinPerClick)}`;
+  }
+  gameOverCheck();
+});
 
-// let upgradeDogecoin = document.querySelector('.mine-dogecoin');
-// let upgradeBitcoin = document.querySelector('.mine-bitcoin');
-// let upgradeEthereum = document.querySelector('.mine-ethereum');
+buyEthereum.addEventListener('click', function () {
+  if (totalMoney >= ethereumPrice) {
+    totalMoney -= ethereumPrice;
+    moneySpent.innerText = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    ethereumCryptoOwned += 1;
+    ethereumPerClick += ethereumGiveMoney;
 
-// let dogecoinBenifetLabel = document.querySelector('.doge-benefit');
-// let bitcoinBenifetLabel = document.querySelector('.bitcoin-benefit');
-// let ethereumBenifetLabel = document.querySelector('.ethereum-benefit');
+    perClickCrypto = (dogecoinPerClick + bitcoinPerClick + ethereumPerClick);
+    ethereumOwned.innerText = `${Math.trunc(bitcoinCryptoOwned)} Coins Owned`;
+    cryptoPerClick.innerText = `${Math.trunc(perClickCrypto)}`;
+    ethereumStatLabel.innerText = `${Math.trunc(ethereumPerClick)}`;
+  }
+  gameOverCheck();
+});
 
-// let dogecoinLevelLabel = document.querySelector('.doge-lvl');
-// let bitcoinLevelLabel = document.querySelector('.bitcoin-lvl');
-// let ethereumLevelLabel = document.querySelector('.ethereum-lvl');
+let upgradeDogecoin = document.querySelector('.mine-dogecoin');
+let upgradeBitcoin = document.querySelector('.mine-bitcoin');
+let upgradeEthereum = document.querySelector('.mine-ethereum');
 
-// const nftShopPrice = [0, 5000, 1000, 1000, 1500, 1500, 2000, 2500, 3000, 5000, 30000, 5000, 5000, 5000, 10000, 30000, 50000, 100000];
-// const nftShopItems = ["😁", "😏", "😌", "😛", "🤪", "😡", "😟", "😨", "😵", "🦷", "🦴", "👄", "🦶", "👅", "👀", "🫁", "🫀", "🧠"];
+let dogecoinBenifetLabel = document.querySelector('.doge-benefit');
+let bitcoinBenifetLabel = document.querySelector('.bitcoin-benefit');
+let ethereumBenifetLabel = document.querySelector('.ethereum-benefit');
 
-// const nftButtons = document.querySelectorAll('.items.nft > div > button');
-// const nftColectibles = document.querySelector('.collect-nft');
+let dogecoinLevelLabel = document.querySelector('.doge-lvl');
+let bitcoinLevelLabel = document.querySelector('.bitcoin-lvl');
+let ethereumLevelLabel = document.querySelector('.ethereum-lvl');
 
-// nftButtons.forEach((button, index) => {
-//   button.addEventListener('click', function() {
-//     if (crypto >= nftShopPrice[index]) {
-//       crypto -= nftShopPrice[index];
-//       totalCryptoElement.innerText = crypto.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-//       button.disabled = true;
+const nftShopPrice = [0, 5000, 1000, 1000, 1500, 1500, 2000, 2500, 3000, 5000, 30000, 5000, 5000, 5000, 10000, 30000, 50000, 100000];
+const nftShopItems = ["😁", "😏", "😌", "😛", "🤪", "😡", "😟", "😨", "😵", "🦷", "🦴", "👄", "🦶", "👅", "👀", "🫁", "🫀", "🧠"];
 
-//       let colectibleData = document.createElement('h1');
-//       colectibleData.innerText = nftShopItems[index];
-//       nftColectibles.appendChild(colectibleData);
-//       nftBonus += nftShopPrice[index] * 0.001;
-//       nftStatLabel.innerText = `${nftBonus.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}`;
-//     } else {
-//       alert("You don't have enough money to buy this NFT.");
-//     }
-//   });
-// });
+const nftButtons = document.querySelectorAll('.items.nft > div > button');
+const nftColectibles = document.querySelector('.collect-nft');
+
+nftButtons.forEach((button, index) => {
+  button.addEventListener('click', function() {
+    if (crypto >= nftShopPrice[index]) {
+      crypto -= nftShopPrice[index];
+      totalCryptoElement.innerText = crypto.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+      button.disabled = true;
+      perClickCrypto += nftShopPrice[index] * 0.001;
+      cryptoPerClick.innerText = `${Math.trunc(perClickCrypto)}`;
+
+      let colectibleData = document.createElement('h1');
+      colectibleData.innerText = nftShopItems[index];
+      nftColectibles.appendChild(colectibleData);
+      nftBonus += nftShopPrice[index] * 0.001;
+      nftStatLabel.innerText = `${Math.trunc(nftBonus)}`;
+      foodPurchase.play();
+    } else {
+      alert("You don't have enough money to buy this NFT.");
+    }
+  });
+});
+
+const bike = document.querySelector('.bike');
+const car = document.querySelector('.car');
+const raceCar = document.querySelector('.race-car');
+
+let bikeText = document.querySelector('.bike > h3');
+let carText = document.querySelector('.car > h3');
+let raceCarText = document.querySelector('.race-car > h3');
+
+bike.addEventListener('click', function () {
+  if (crypto >= 10000) {
+    crypto -= 10000;
+    totalCryptoElement.innerText = crypto.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    bikeText.innerText = `Bought Bike`;
+    bike.classList.add('bought-car');
+    bike.classList.remove('car-shop');
+    carBonus += 10;
+    carStatLabel.innerText = `${Math.trunc(carBonus)}`;
+    perClickCrypto += 10;
+    cryptoPerClick.innerText = `${Math.trunc(perClickCrypto)}`;
+    bgPurchase.play();
+  } else {
+    alert("You don't have enough money to buy this car.");
+  }
+});
+car.addEventListener('click', function () {
+  if (crypto >= 20000) {
+    crypto -= 20000;
+    totalCryptoElement.innerText = crypto.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    carText.innerText = `Bought Bike`;
+    car.classList.add('bought-car');
+    car.classList.remove('car-shop');
+    carBonus += 20;
+    carStatLabel.innerText = `${Math.trunc(carBonus)}`;
+    perClickCrypto += 20;
+    cryptoPerClick.innerText = `${Math.trunc(perClickCrypto)}`;
+    bgPurchase.play();
+  } else {
+    alert("You don't have enough money to buy this car.");
+  }
+});
+raceCar.addEventListener('click', function () {
+  if (crypto >= 30000) {
+    crypto -= 30000;
+    totalCryptoElement.innerText = crypto.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    raceCarText.innerText = `Bought Bike`;
+    raceCar.classList.add('bought-car');
+    raceCar.classList.remove('car-shop');
+    carBonus += 30;
+    carStatLabel.innerText = `${Math.trunc(carBonus)}`;
+    perClickCrypto += 30;
+    cryptoPerClick.innerText = `${Math.trunc(perClickCrypto)}`;
+    bgPurchase.play();
+  } else {
+    alert("You don't have enough money to buy this car.");
+  }
+});
+
+const oneHundredKCrypto = document.querySelector('.oneHundredKCrypto > button');
+const oneMillionCrypto = document.querySelector('.oneMillionCrypto > button');
+const tenMillionCrypto = document.querySelector('.tenMillionCrypto > button');
+
+let cryptoTrophies = document.querySelector('.owned-crypto-trophies');
+
+oneHundredKCrypto.addEventListener('click', function() {
+  if (crypto >= 100000) {
+    crypto -= 100000;
+    totalCryptoElement.innerText = crypto.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    oneHundredKCrypto.disabled = true;
+    trophyPurchsed.play();
+
+    let trophyIcon = document.createElement('h1');
+    trophyIcon.innerText = '💵';
+    cryptoTrophies.appendChild(trophyIcon);
+  } else {
+    alert("You don't have enough money to buy this trophy.");
+  }
+});
+oneMillionCrypto.addEventListener('click', function() {
+  if (crypto >= 1000000) {
+    crypto -= 1000000;
+    totalCryptoElement.innerText = crypto.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    oneMillionCrypto.disabled = true;
+    trophyPurchsed.play();
+
+    let trophyIcon = document.createElement('h1');
+    trophyIcon.innerText = '💸';
+    cryptoTrophies.appendChild(trophyIcon);
+  } else {
+    alert("You don't have enough money to buy this trophy.");
+  }
+});
+tenMillionCrypto.addEventListener('click', function() {
+  if (crypto >= 10000000) {
+    crypto -= 10000000;
+    totalCryptoElement.innerText = crypto.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    tenMillionCrypto.disabled = true;
+    trophyPurchsed.play();
+
+    let trophyIcon = document.createElement('h1');
+    trophyIcon.innerText = '💳';
+    cryptoTrophies.appendChild(trophyIcon);
+  } else {
+    alert("You don't have enough money to buy this trophy.");
+  }
+});
+
+let cryptoLootBoxScreen = document.querySelector('.crypto-box-display');
+let cryptoLbSpin = document.querySelector('.crypto-lb-spin');
+let cryptoLbTerminal = document.querySelector('.crypto-lb-terminal');
+
+const cryptoRewardListLb = ["crypto-bg-1", "crypto-bg-2", "crypto-bg-3", "crypto-bg-4", "crypto-bg-5", "crypto-bg-6", "crypto-bg-7", "crypto-bg-8", "crypto-bg-9", "crypto-bg-10"];
+
+cryptoLbSpin.addEventListener('click', function () {
+  if (crypto >= 5000) {
+    crypto -= 5000;
+    totalCryptoElement.innerText = crypto.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    cryptoLbSpin.disabled = true;
+    buyLootBox.play();
+
+    for (let i = 0; i < 10; i++) {
+      setTimeout(function () {
+        cryptoLootBoxScreen.innerText = normalListLb[i];
+      }, 100 * i);
+    }
+    setTimeout(function () {
+      openLootBox.play();
+      let randomIndex = Math.floor(Math.random() * 10);
+      cryptoLootBoxScreen.innerText = normalListLb[randomIndex];
+
+      if (cryptoRewardListLb[randomIndex] != 500) {
+        colors.push(cryptoRewardListLb[randomIndex]);
+        pointer = colors.length - 1;
+        body.className = "";
+        body.classList.add(cryptoRewardListLb[randomIndex]);
+
+        cryptoRewardListLb[randomIndex] = 500;
+        cryptoLbTerminal.innerText = `You won background #${randomIndex+1}!`
+        // cryptoLolBgNegativeMultiplier = 0.8;
+        lolBgNegativeMultiplier = 5;
+        updateStats();
+      } else {
+        crypto += 500;
+        totalCryptoElement.innerText = crypto.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+        cryptoLbTerminal.innerText = `You won $100!`
+      }
+      cryptoLbSpin.disabled = false;
+    }, 1000);
+  } else {
+    alert("You don't have enough crypto to spin the loot box.");
+  }
+});
+
+// Secret
+const song1 = new Audio('./assets/bg-music/bg-music-1.m4a');
+const song2 = new Audio('./assets/bg-music/bg-music-4.m4a');
+const song3 = new Audio('./assets/bg-music/bg-music-7.m4a');
+const song4 = new Audio('./assets/bg-music/bg-music-9.m4a');

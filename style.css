@@ -151,6 +151,7 @@ body {
       transform: none;
       color: grey;
       border-color: grey;
+      background-color: transparent;
     }
   }
   &:hover {

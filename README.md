@@ -14,25 +14,19 @@ This is the next best hit on the market! <br/>
 Check it out at https://arpan-shah-102.github.io/slots-tycoon/ <br/>
 Or at https://slots-tycoon.netlify.app <br/>
 
-### Crypto Update V2.45
-- Add Bitcoin, Ethereum, and Dogecoin
-- Add crypto lootbox
-- Add crypto trophies
-- Add the car shop
-- Change NFTs to food mall
-- Add NFTs back to crypto update
-- Add a navigation sidebar
+
+#### Crypto Update Expansion pack V2.55
+- Added crypto mining
+- Bug Fixes
 
 ### Future Updates
-#### Crypto Update Expansion pack V2.6
-1. Added crypto mining
-2. Added automining
-3. Bug Fixes
 
 #### The Final Update V3
-4. Achievment system
-5. Saving data with cookies
-6. Saving data to json files
-7. Loading data from json files
-8. Add better goals for beating the game
-9. Bug Fixes
+1. Achievment system
+2. Saving data with cookies
+3. Saving data to json files
+4. Loading data from json files
+5. Add better goals for beating the game
+6. Bug Fixes
+7. Code Optimizations
+8. Added Auto-Mining for Crypto

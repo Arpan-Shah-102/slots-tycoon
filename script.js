@@ -68,7 +68,7 @@ let lolBgNegativeMultiplier = 0;
 
 spin.addEventListener("click", function() {
   try {
-    if (10 > totalMoney) {
+    if (10 - addedBonus - foodMultiplier - bgColorMultiplier + lolBgNegativeMultiplier > totalMoney) {
       throw new Error("You do not have enough money. You are broke.");
     }
     spinSlot(1, false);
@@ -87,7 +87,7 @@ autoSpin.addEventListener("click", function() {
     numberOfItereations = Number(prompt("How many times would you like to spin?"));
     if (isNaN(numberOfItereations) || numberOfItereations <= 0) {
       throw new Error("Invalid number of iterations. Please enter a positive number.");
-    } else if (numberOfItereations * (10 - totalBonus) > totalMoney) {
+    } else if (numberOfItereations * (10 - addedBonus - foodMultiplier - bgColorMultiplier + lolBgNegativeMultiplier) > totalMoney) {
       throw new Error("You don't have enough money to perform that many spins.");
     }
     spinSlot(numberOfItereations, true);
@@ -172,7 +172,7 @@ function spinSlot(iterations, autoSpinOn) {
         }
       }, 1000 * multiplier);
       updateStats();
-      gameOverCheck();
+      setTimeout(gameOverCheck, 1000);
       if (gameOverScreen.style.display == "flex" || gameWonScreen.style.display == "flex") {
         return;
       }
@@ -206,11 +206,25 @@ colorThemes.addEventListener("click", function () {
   body.classList.add(colors[pointer]);
   changBgColor.play();
   lolBgNegativeMultiplier = 0;
+  cryptoLolBgNegativeMultiplier = 1;
+  cryptoBackgroundStatLabel.innerText = `0`;
   ['img-1', 'img-2', 'img-3', 'img-4', 'img-5', 'img-6', 'img-7', 'img-8', 'img-9', 'img-10'].forEach(function (item) {
     if (item == colors[pointer]) {
       lolBgNegativeMultiplier = 5;
     }
   });
+  ['crypto-img-1', 'crypto-img-2', 'crypto-img-3', 'crypto-img-4', 'crypto-img-5', 'crypto-img-6', 'crypto-img-7', 'crypto-img-8', 'crypto-img-9', 'crypto-img-10'].forEach(function (item) {
+    if (item == colors[pointer]) {
+      cryptoLolBgNegativeMultiplier = 0.8;
+      cryptoBackgroundStatLabel.innerText = `20`;
+    }
+  });
+  let subtotal = (dogecoinCryptoOwned * dogeCoinGiveMoney * cryptoLolBgNegativeMultiplier);
+  subtotal += (bitcoinCryptoOwned * bitcoinGiveMoney * cryptoLolBgNegativeMultiplier);
+  subtotal += (ethereumCryptoOwned * ethereumGiveMoney * cryptoLolBgNegativeMultiplier);
+  subtotal += nftBonus * cryptoLolBgNegativeMultiplier;
+  subtotal += carBonus * cryptoLolBgNegativeMultiplier;
+  cryptoPerClick.innerText = `${Math.trunc(subtotal).toLocaleString()}`;
   updateStats();
   gameOverCheck();
 });
@@ -453,7 +467,7 @@ function gameOverCheck() {
         finsihedMessageShown = true;
       }, 2000);
     }
-    else if (totalMoney < 10) {
+    else if (totalMoney < 10 - addedBonus - foodMultiplier - bgColorMultiplier + lolBgNegativeMultiplier) {
       setTimeout(function () {
         alert("You're out of money I see");
       }, 500);
@@ -588,6 +602,8 @@ muteButton.addEventListener('click', function () {
   trophyPurchsed.muted = !trophyPurchsed.muted;
   buyLootBox.muted = !buyLootBox.muted;
   openLootBox.muted = !openLootBox.muted;
+  buyCryptoSound.muted = !buyCryptoSound.muted;
+  mineCryptoMp3.muted = !mineCryptoMp3.muted;
 
   if (muteButton.innerText == "Mute SFX") {
     muteButton.innerText = "Unmute SFX";
@@ -696,9 +712,13 @@ let bitcoinStatLabel = document.querySelector('.bc-stat');
 let ethereumStatLabel = document.querySelector('.et-stat');
 let nftStatLabel = document.querySelector('.nft-stat');
 let carStatLabel = document.querySelector('.car-stat');
+let cryptoBackgroundStatLabel = document.querySelector('.crypto-bg-stat');
 
 let nftBonus = 0;
 let carBonus = 0;
+
+const buyCryptoSound = new Audio('./assets/crypto/buy-crypto-sfx.mp3');
+const mineCryptoMp3 = new Audio('./assets/crypto/mine-crypto-mp3.mp3');
 
 cryptoMine.addEventListener('click', function () {
   crypto += (dogecoinCryptoOwned * dogeCoinGiveMoney * cryptoLolBgNegativeMultiplier);
@@ -707,6 +727,7 @@ cryptoMine.addEventListener('click', function () {
   crypto += nftBonus * cryptoLolBgNegativeMultiplier;
   crypto += carBonus * cryptoLolBgNegativeMultiplier;
   totalCryptoElement.innerText = crypto.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  mineCryptoMp3.play();
 });
 
 // let cryptoAutoCollect = false;
@@ -729,11 +750,16 @@ buyDogeCoin.addEventListener('click', function () {
     moneySpent.innerText = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     dogecoinCryptoOwned += 1;
     dogecoinPerClick += dogeCoinGiveMoney;
+    dogecoinPrice *= 1.5;
+    buyDogeCoin.innerText = `$${Math.trunc(dogecoinPrice).toLocaleString()}`;
 
     perClickCrypto = (dogecoinPerClick + bitcoinPerClick + ethereumPerClick);
-    dogeCoinOwned.innerText = `${Math.trunc(dogecoinCryptoOwned)} Coins Owned`;
-    cryptoPerClick.innerText = `${Math.trunc(perClickCrypto)}`;
-    dogecoinStatLabel.innerText = `${Math.trunc(dogecoinPerClick)}`;
+    dogeCoinOwned.innerText = `${Math.trunc(dogecoinCryptoOwned).toLocaleString()} Coins Owned`;
+    cryptoPerClick.innerText = `${Math.trunc(perClickCrypto).toLocaleString()}`;
+    dogecoinStatLabel.innerText = `${Math.trunc(dogecoinPerClick).toLocaleString()}`;
+    buyCryptoSound.play();
+  } else {
+    alert("You don't have enough money to buy this cryptocurrency.");
   }
   gameOverCheck();
 });
@@ -744,11 +770,16 @@ buyBitcoin.addEventListener('click', function () {
     moneySpent.innerText = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     bitcoinCryptoOwned += 1;
     bitcoinPerClick += bitcoinGiveMoney;
+    bitcoinPrice *= 1.5;
+    buyBitcoin.innerText = `$${Math.trunc(bitcoinPrice).toLocaleString()}`;
 
     perClickCrypto = (dogecoinPerClick + bitcoinPerClick + ethereumPerClick);
-    bitcoinOwned.innerText = `${Math.trunc(bitcoinCryptoOwned)} Coins Owned`;
-    cryptoPerClick.innerText = `${Math.trunc(perClickCrypto)}`;
-    bitcoinStatLabel.innerText = `${Math.trunc(bitcoinPerClick)}`;
+    bitcoinOwned.innerText = `${Math.trunc(bitcoinCryptoOwned).toLocaleString()} Coins Owned`;
+    cryptoPerClick.innerText = `${Math.trunc(perClickCrypto).toLocaleString()}`;
+    bitcoinStatLabel.innerText = `${Math.trunc(bitcoinPerClick).toLocaleString()}`;
+    buyCryptoSound.play();
+  } else {
+    alert("You don't have enough money to buy this cryptocurrency.");
   }
   gameOverCheck();
 });
@@ -759,11 +790,16 @@ buyEthereum.addEventListener('click', function () {
     moneySpent.innerText = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     ethereumCryptoOwned += 1;
     ethereumPerClick += ethereumGiveMoney;
+    ethereumPrice *= 1.5;
+    buyEthereum.innerText = `$${Math.trunc(ethereumPrice).toLocaleString()}`;
 
     perClickCrypto = (dogecoinPerClick + bitcoinPerClick + ethereumPerClick);
-    ethereumOwned.innerText = `${Math.trunc(bitcoinCryptoOwned)} Coins Owned`;
-    cryptoPerClick.innerText = `${Math.trunc(perClickCrypto)}`;
-    ethereumStatLabel.innerText = `${Math.trunc(ethereumPerClick)}`;
+    ethereumOwned.innerText = `${Math.trunc(ethereumCryptoOwned).toLocaleString()} Coins Owned`;
+    cryptoPerClick.innerText = `${Math.trunc(perClickCrypto).toLocaleString()}`;
+    ethereumStatLabel.innerText = `${Math.trunc(ethereumPerClick).toLocaleString()}`;
+    buyCryptoSound.play();
+  } else {
+    alert("You don't have enough money to buy this cryptocurrency.");
   }
   gameOverCheck();
 });
@@ -779,6 +815,96 @@ let ethereumBenifetLabel = document.querySelector('.ethereum-benefit');
 let dogecoinLevelLabel = document.querySelector('.doge-lvl');
 let bitcoinLevelLabel = document.querySelector('.bitcoin-lvl');
 let ethereumLevelLabel = document.querySelector('.ethereum-lvl');
+
+let upgradeDogecoinPrice = 1000;
+let upgradeBitcoinPrice = 5000;
+let upgradeEthereumPrice = 10000;
+
+let dogecoinLevel = 1;
+let bitcoinLevel = 1;
+let ethereumLevel = 1;
+
+let dogeStat = document.querySelector('.doge-stat');
+let bitcoinStat = document.querySelector('.bitcoin-stat');
+let ethereumStat = document.querySelector('.ethereum-stat');
+
+upgradeDogecoin.addEventListener('click', function () {
+  if (crypto >= upgradeDogecoinPrice) {
+    crypto -= upgradeDogecoinPrice;
+    totalCryptoElement.innerText = Math.trunc(crypto).toLocaleString();
+    upgradeDogecoinPrice += 1000;
+    dogecoinLevel += 1;
+    dogeCoinGiveMoney *= 1.5;
+
+    dogecoinLevelLabel.innerText = `Level ${dogecoinLevel} > ${dogecoinLevel+1}`;
+    dogecoinBenifetLabel.innerText = `₡${Math.trunc(dogeCoinGiveMoney).toLocaleString()} > ₡${Math.trunc(dogeCoinGiveMoney*1.5).toLocaleString()}`;
+    upgradeDogecoin.innerText = `₡${Math.trunc(upgradeDogecoinPrice).toLocaleString()}`;
+    dogeStat.innerText = `+₡${Math.trunc(dogeCoinGiveMoney).toLocaleString()} Each`;
+    upgradeSound.play();
+
+    let subtotal = (dogecoinCryptoOwned * dogeCoinGiveMoney * cryptoLolBgNegativeMultiplier);
+    subtotal += (bitcoinCryptoOwned * bitcoinGiveMoney * cryptoLolBgNegativeMultiplier);
+    subtotal += (ethereumCryptoOwned * ethereumGiveMoney * cryptoLolBgNegativeMultiplier);
+    subtotal += nftBonus * cryptoLolBgNegativeMultiplier;
+    subtotal += carBonus * cryptoLolBgNegativeMultiplier;
+    cryptoPerClick.innerText = `${Math.trunc(subtotal).toLocaleString()}`;
+  }
+  else {
+    alert("You don't have enough money to upgrade this feature.");
+  }
+});
+
+upgradeBitcoin.addEventListener('click', function () {
+  if (crypto >= upgradeBitcoinPrice) {
+    crypto -= upgradeBitcoinPrice;
+    totalCryptoElement.innerText = Math.trunc(crypto).toLocaleString();
+    upgradeBitcoinPrice += 5000;
+    bitcoinLevel += 1;
+    bitcoinGiveMoney *= 1.5;
+
+    bitcoinLevelLabel.innerText = `Level ${bitcoinLevel} > ${bitcoinLevel+1}`;
+    bitcoinBenifetLabel.innerText = `₡${Math.trunc(bitcoinGiveMoney).toLocaleString()} > ₡${Math.trunc(bitcoinGiveMoney*1.5).toLocaleString()}`;
+    upgradeBitcoin.innerText = `₡${Math.trunc(upgradeBitcoinPrice).toLocaleString()}`;
+    bitcoinStat.innerText = `+₡${Math.trunc(bitcoinGiveMoney).toLocaleString()} Each`;
+    upgradeSound.play();
+
+    let subtotal = (dogecoinCryptoOwned * dogeCoinGiveMoney * cryptoLolBgNegativeMultiplier);
+    subtotal += (bitcoinCryptoOwned * bitcoinGiveMoney * cryptoLolBgNegativeMultiplier);
+    subtotal += (ethereumCryptoOwned * ethereumGiveMoney * cryptoLolBgNegativeMultiplier);
+    subtotal += nftBonus * cryptoLolBgNegativeMultiplier;
+    subtotal += carBonus * cryptoLolBgNegativeMultiplier;
+    cryptoPerClick.innerText = `${Math.trunc(subtotal).toLocaleString()}`;
+  }
+  else {
+    alert("You don't have enough money to upgrade this feature.");
+  }
+});
+
+upgradeEthereum.addEventListener('click', function () {
+  if (crypto >= upgradeEthereumPrice) {
+    crypto -= upgradeEthereumPrice;
+    totalCryptoElement.innerText = Math.trunc(crypto).toLocaleString();
+    upgradeEthereumPrice += 10000;
+    ethereumLevel += 1;
+    ethereumGiveMoney *= 1.5;
+
+    ethereumLevelLabel.innerText = `Level ${ethereumLevel} > ${ethereumLevel+1}`;
+    ethereumBenifetLabel.innerText = `₡${Math.trunc(ethereumGiveMoney).toLocaleString()} > ₡${Math.trunc(ethereumGiveMoney*1.5).toLocaleString()}`;
+    upgradeEthereum.innerText = `₡${Math.trunc(upgradeEthereumPrice).toLocaleString()}`;
+    ethereumStat.innerText = `+₡${Math.trunc(ethereumGiveMoney).toLocaleString()} Each`;
+    upgradeSound.play();
+
+    let subtotal = (dogecoinCryptoOwned * dogeCoinGiveMoney * cryptoLolBgNegativeMultiplier);
+    subtotal += (bitcoinCryptoOwned * bitcoinGiveMoney * cryptoLolBgNegativeMultiplier);
+    subtotal += (ethereumCryptoOwned * ethereumGiveMoney * cryptoLolBgNegativeMultiplier);
+    subtotal += nftBonus * cryptoLolBgNegativeMultiplier;
+    subtotal += carBonus * cryptoLolBgNegativeMultiplier;
+    cryptoPerClick.innerText = `${Math.trunc(subtotal).toLocaleString()}`;
+  }
+  else {
+    alert("You don't have enough money to upgrade this feature.");
+  }
+});
 
 const nftShopPrice = [0, 5000, 1000, 1000, 1500, 1500, 2000, 2500, 3000, 5000, 30000, 5000, 5000, 5000, 10000, 30000, 50000, 100000];
 const nftShopItems = ["😁", "😏", "😌", "😛", "🤪", "😡", "😟", "😨", "😵", "🦷", "🦴", "👄", "🦶", "👅", "👀", "🫁", "🫀", "🧠"];
@@ -822,9 +948,9 @@ bike.addEventListener('click', function () {
     bikeText.innerText = `Bought Bike`;
     bike.classList.add('bought-car');
     bike.classList.remove('car-shop');
-    carBonus += 10;
+    carBonus += 100;
     carStatLabel.innerText = `${Math.trunc(carBonus)}`;
-    perClickCrypto += 10;
+    perClickCrypto += 100;
     cryptoPerClick.innerText = `${Math.trunc(perClickCrypto)}`;
     bgPurchase.play();
   } else {
@@ -835,12 +961,12 @@ car.addEventListener('click', function () {
   if (crypto >= 20000) {
     crypto -= 20000;
     totalCryptoElement.innerText = crypto.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-    carText.innerText = `Bought Bike`;
+    carText.innerText = `Bought Car`;
     car.classList.add('bought-car');
     car.classList.remove('car-shop');
-    carBonus += 20;
+    carBonus += 250;
     carStatLabel.innerText = `${Math.trunc(carBonus)}`;
-    perClickCrypto += 20;
+    perClickCrypto += 250;
     cryptoPerClick.innerText = `${Math.trunc(perClickCrypto)}`;
     bgPurchase.play();
   } else {
@@ -851,12 +977,12 @@ raceCar.addEventListener('click', function () {
   if (crypto >= 30000) {
     crypto -= 30000;
     totalCryptoElement.innerText = crypto.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-    raceCarText.innerText = `Bought Bike`;
+    raceCarText.innerText = `Bought Race Car`;
     raceCar.classList.add('bought-car');
     raceCar.classList.remove('car-shop');
-    carBonus += 30;
+    carBonus += 600;
     carStatLabel.innerText = `${Math.trunc(carBonus)}`;
-    perClickCrypto += 30;
+    perClickCrypto += 600;
     cryptoPerClick.innerText = `${Math.trunc(perClickCrypto)}`;
     bgPurchase.play();
   } else {
@@ -944,9 +1070,15 @@ cryptoLbSpin.addEventListener('click', function () {
 
         cryptoRewardListLb[randomIndex] = 500;
         cryptoLbTerminal.innerText = `You won background #${randomIndex+1}!`
-        // cryptoLolBgNegativeMultiplier = 0.8;
-        lolBgNegativeMultiplier = 5;
-        updateStats();
+        cryptoLolBgNegativeMultiplier = 0.8;
+        cryptoBackgroundStatLabel.innerText = `20`;
+
+        let subtotal = (dogecoinCryptoOwned * dogeCoinGiveMoney * cryptoLolBgNegativeMultiplier);
+        subtotal += (bitcoinCryptoOwned * bitcoinGiveMoney * cryptoLolBgNegativeMultiplier);
+        subtotal += (ethereumCryptoOwned * ethereumGiveMoney * cryptoLolBgNegativeMultiplier);
+        subtotal += nftBonus * cryptoLolBgNegativeMultiplier;
+        subtotal += carBonus * cryptoLolBgNegativeMultiplier;
+        cryptoPerClick.innerText = `${Math.trunc(subtotal).toLocaleString()}`;
       } else {
         crypto += 500;
         totalCryptoElement.innerText = crypto.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
@@ -961,6 +1093,8 @@ cryptoLbSpin.addEventListener('click', function () {
 
 // Secret
 const song1 = new Audio('./assets/bg-music/bg-music-1.m4a');
-const song2 = new Audio('./assets/bg-music/bg-music-4.m4a');
-const song3 = new Audio('./assets/bg-music/bg-music-7.m4a');
-const song4 = new Audio('./assets/bg-music/bg-music-9.m4a');
+const song4 = new Audio('./assets/bg-music/bg-music-4.m4a');
+const song7 = new Audio('./assets/bg-music/bg-music-7.m4a');
+const song9 = new Audio('./assets/bg-music/bg-music-9.m4a');
+
+const secretMessage = "You have found the secret message :O\nNow stop cheating and get back to playing!";

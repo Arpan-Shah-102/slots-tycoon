@@ -1,4 +1,4 @@
-// This is how to use cookies according to bard:
+// This is how to use cookies according to bard/gemini ai:
 
 // To save data using JavaScript cookies, you can use the document.cookie property:
 // Setting a Cookie:

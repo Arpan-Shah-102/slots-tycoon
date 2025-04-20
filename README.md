@@ -25,9 +25,9 @@ Or at https://slots-tycoon.netlify.app <br/>
 
 ### Future Updates
 #### Crypto Update Expansion pack V2.6
-1. Added SFX
-2. Added crypto mining
-3. Changed crypto lootbox to give different rewards
+1. Added crypto mining
+2. Added automining
+3. Bug Fixes
 
 #### The Final Update V3
 4. Achievment system
@@ -36,7 +36,3 @@ Or at https://slots-tycoon.netlify.app <br/>
 7. Loading data from json files
 8. Add better goals for beating the game
 9. Bug Fixes
-10. Added auto-mining
-
-### The Actual Final update V3.5
-11. Add log-in and sign-up system (ONLY AVALIBLE ON NETLIFY)

@@ -1,0 +1,59 @@
+NORMAL
+---------------------------------------------------------
+0  - The First Spin         - Spin your first game.
+1  - You Beat It            - "Beat" the game.
+2  - Fatty                  - Get all the foods.
+3  - Dripped Out            - Get all the backgrounds.
+4  - It Won't Stop Spinning - Spin 1,000 times.
+5  - Money Hungry           - Buy your first upgrade.
+6  - Lucky                  - Upgrade your luck to lvl 15.
+7  - Totally Legal          - Upgrade your income to lvl 15.
+8  - Pyramid Scheme         - Upgrade your spin to lvl 15.
+9  - Steriroids             - Get all the upgrades to lvl 15.
+10 - Participation Award    - Get the 10k trophy.
+11 - PWashDollarMarket      - Get the 100k trophy.
+12 - Lvl 100 Mafia          - Get the 1m trophy.
+13 - Regret                 - Get all the backgrounds from the lootbox.
+14 - Winning Big            - Get your first jackpot.
+15 - So Close yet so Far    - Get two out of three on the machine.
+16 - Spare Change           - Use your first loan.
+17 - Getting Back Up        - Pay back your first loan.
+
+CRYPTO
+---------------------------------------------------------
+18 - Let's Hope this Doesn't Crash - Mine your first crypto.
+19 - Scammed                       - Get all of the NFTs.
+20 - Was that a Speed Bump?        - Get all of the cars.
+21 - Looks like it Didn't Crash    - Get the ₡10,000,000 trophy.
+22 - Crypto King                   - Get the ₡100,000,000 trophy.
+23 - Crypto God                    - Get the ₡1,000,000,000 trophy.
+24 - Virtual Regret                - Get all the backgrounds from the crypto lootbox.
+
+SCAM COIN
+---------------------------------------------------------
+25 - Idiot                     - Buy the scam coin.
+26 - Peace                     - Buy the ad blocker.
+27 - Sponsored                 - Buy your first ad.
+28 - Can I Skip them Now?      - Buy all the ads.
+29 - Wanna Break from the Ads? - Get 100 ads in total.
+30 - Skipped                   - Close 1 ad.
+31 - Painful Marketing         - Close 100 ads.
+32 - Scamming the Scammers     - Sell the scam coin back.
+33 - Scammed Again             - Buy the scam coin back.
+
+RANDOM
+---------------------------------------------------------
+34 - Pain and Suffering        - Get pickle grandma background.
+35 - You Found Me!             - Click this acheivement.
+36 - On the Radio              - Play the background music.
+37 - Touch Grass               - Get all the achievements besides the random ones.
+38 - Braindead                 - Tung tung tung sahur.
+39 - Japenese Motorcycle Gang  - Get the motorcycle, heart NFT, $1m tophy, and ramen.
+40 - You'll set me Free Right? - Buy a cat from the food shop.
+41 - Exotic Taste              - Buy all the animals from the food shop.
+42 - Monopoly Money            - Get ₡1,000,000,000,000,000 and $10,000,000.
+43 - Bankrupt                  - Let the loan get to $750 intrest.
+44 - #1 Fan                    - Click on the credits.
+45 - 2nd Place                 - Get ₡100,000,000 trophy, car, heart NFT, $100,000 trophy, and the donut.
+46 - Lazy                      - Get to the slot machine with the menu bar.
+47 - What was that?            - Click on the item in the corner.

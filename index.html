@@ -11,6 +11,7 @@
   <body>
     <div class="menu-holder">
       <a class="menu">Menu</a>
+      <a class="menu achievement-btn">Achievements</a>
     </div>
     <nav class="navigation">
       <p class="slot-machine-btn">Slot Machine</p>
@@ -18,7 +19,8 @@
       <p class="food-collection-btn">Food Collection</p>
       <p class="food-shop-btn">Food Shop</p>
       <p class="background-shop-btn">Background Shop</p>
-      <p class="stats-btn">Stats</p>
+      <p class="stats-btn">Stats</p> <br>
+      <p class="loans-btn">Loans</p>
       <p class="trophies-btn">Trophies</p>
       <p class="loot-box-btn">Loot Box</p>
       <p class="options-btn">Options</p>
@@ -31,9 +33,55 @@
       <p class="crypto-stats-btn">Crypto Stats</p>
       <p class="crypto-trophies-btn">Crypto Trophies</p>
       <p class="crypto-loot-box-btn">Crypto Loot Box</p>
+      <p class="adblock-btn">Adblocker</p>
+      <p class="purchased-ads-btn">Purchased Ads</p>
       <p class="prize-log-btn">Prize Log</p>
       <p class="credits-btn">Credits</p>
     </nav>
+
+    <div class="achievements">
+      <h1>Achievements</h1>
+      <div class="achievement-box"></div>
+    </div>
+
+    <div class="all-ads"></div>
+
+    <div class="cheats">
+      <div class="cheat-popup">
+        <h1>Cheats</h1>
+        <div class="cheat-buttons">
+          <div class="classic-buttons">
+            <button class="get-money primary">Get Money</button>
+            <button class="get-crypto primary">Get Crypto</button>
+          </div>
+          <div class="random-buttons">
+            <button class="get-achievements secondary">Get All Achievements</button>
+            <button class="permanent-adblocker secondary">Enable Permanent Adblocker</button>
+            <button class="guaranteed-jackpot secondary">Guaranteed Jackpot</button>
+            <button class="get-all-cryptolb secondary">Get all Crypto Backgrounds</button>
+            <button class="get-all-lb secondary">Get all Lootbox Backgrounds</button>
+            <button class="get-all-ads secondary">Get all Ads</button>
+          </div>
+          <div class="destroy-buttons">
+            <button class="destroy-function teritry">Destroy Function</button>
+            <button class="destroy-style teritry">Destroy Style</button>
+            <button class="destroy-website teritry">Destroy Website</button>
+          </div>
+          <div class="secret-songs">
+            <button class="play-secret-song-one teritry">Play Secret Song 1</button>
+            <button class="play-secret-song-four teritry">Play Secret Song 4</button>
+            <button class="play-secret-song-seven teritry">Play Secret Song 7</button>
+            <button class="play-secret-song-nine teritry">Play Secret Song 9</button>
+            <button class="secret-message teritry">Show Secret Message</button>
+          </div>
+        </div>
+      </div>
+      <button class="cheats-btn secondary">💻</button>
+    </div>
+
+    <div class="thing">
+      <h3>V3</h3>
+    </div>
 
     <div class="holder" id="slot-machine">
       <h1>Slot Machine</h1>
@@ -192,10 +240,25 @@
       <h1>Stats</h1>
       <div class="stats">
         <h2>Luck - <span class="luck-stat">0.00</span>%</h2>
-        <h2>Income - $<span class="two-pair-stat">15.00</span>, $<span class="jackpot-stat">300.00</span></h2>
+        <h2>Income - $<span class="two-pair-stat">20.00</span>, $<span class="jackpot-stat">400.00</span></h2>
         <h2>Spin - +$<span class="spin-stat">0.00</span></h2>
         <h2>Food - +$<span class="food-stat">0.00</span></h2>
         <h2>Background - +$<span class="bg-stat">0.00</span></h2>
+      </div>
+    </div>
+
+    <div id="loans">
+      <h1>Loans</h1>
+      <div class="loans">
+        <div class="loan-btns">
+          <button class="primary take-loan">Take Loan</button>
+          <button class="secondary pay-loan" disabled>Pay Back Loan</button>
+        </div>
+        <div class="loan-data">
+          <p>Loan Amount: $500</p>
+          <p>Repayment: $<span class="loan-repayment">0</span></p>
+          <p>Interest Rate: +1%/spin</p>
+        </div>
       </div>
     </div>
 
@@ -239,10 +302,10 @@
       <div class="functions">
         <button class="mute teritry">Mute SFX</button>
         <button class="bg-music-mute teritry">Unmute Background Music</button>
-        <button disabled class="save teritry">Save Game</button>
-        <button disabled class="save-file teritry">Save Game to File</button>
-        <button disabled class="load teritry">Load Game from File</button>
-        <button disabled class="restart teritry">Restart Game</button>
+        <!-- <button class="save teritry">Save Game</button> -->
+        <button class="save-file teritry">Save Game</button>
+        <button class="load teritry">Load Game</button>
+        <!-- <button class="restart teritry">Restart Game</button> -->
       </div>
     </div>
 
@@ -251,7 +314,7 @@
       <div class="upgrade-container crypto-coin-buy crypto-main"> 
         <h2>Crypto: ₡<span class="total-crypto">0</span></h2>
         <button class="primary crypto-mine">Mine</button>
-        <!-- <button class="secondary crypto-auto-mine">Auto Mine</button> -->
+        <button class="secondary crypto-auto-mine">Auto Mine</button>
         <h3>Crypto per click: ₡<span class="crypto-per-click">0</span></h3>
       </div>
     </div>
@@ -285,6 +348,16 @@
           <h3 class="ethereum-stat">+₡200 Each</h3>
           <button class="secondary buy-ethereum">$10,000</button>
           <h3 class="ethereum-owned">0 Coins Owned</h3>
+        </div>
+        <div class="upgrade-container crypto-coin-buy">
+          <h2>Scam Coin</h2>
+          <div>
+            <img src="./assets/crypto/indian-scammer-guy.jpg" alt="Scam Coin">
+          </div>
+          <h3>2x Money 🤑🤑</h3>
+          <button class="secondary buy-scam-coin">$100,000</button>
+          <h3 class="scam-coin-sell-price"><abbr title="Selling this coin will cause you to lose your permanent 2x money multipier!">Sell Coin</abbr></h3>
+          <h3 class="scam-coin-desc"><abbr title="Buying this coin could cause unwanted changes!">!Warning!</abbr></h3>
         </div>
       </div>
     </div>
@@ -430,15 +503,15 @@
         <div class="shop items">
           <div class="car-shop bike">
             <h1>🏍️</h1>
-            <h3>₡10,000</h3>
+            <h3>₡100,000</h3>
           </div>
           <div class="car-shop car">
             <h1>🚗</h1>
-            <h3>₡20,000</h3>
+            <h3>₡250,000</h3>
           </div>
           <div class="car-shop race-car">
             <h1>🏎️</h1>
-            <h3>₡30,000</h3>
+            <h3>₡1,000,000</h3>
           </div>
         </div>
       </div>
@@ -464,19 +537,19 @@
       <h1>Crypto Trophies</h1>
       <div class="trophies">
         <div class="oneHundredKCrypto">
-          <h2>₡100,000</h2>
+          <h2>₡10,000,000</h2>
           <h1>💵</h1>
-          <button class="secondary">₡100,000</button>
+          <button class="secondary">₡10,000,000</button>
         </div>
         <div class="oneMillionCrypto">
-          <h2>₡1,000,000</h2>
+          <h2>₡100,000,000</h2>
           <h1>💸</h1>
-          <button class="secondary">₡1,000,000</button>
+          <button class="secondary">₡100,000,000</button>
         </div>
         <div class="tenMillionCrypto">
-          <h2>₡10,000,000</h2>
+          <h2>₡1,000,000,000</h2>
           <h1>💳</h1>
-          <button class="secondary">₡10,000,000</button>
+          <button class="secondary">₡1,000,000,000</button>
         </div>
       </div>
     </div>
@@ -491,6 +564,22 @@
       <p class="crypto-lb-terminal lb-terminal">Open to win!</p>
     </div>
 
+    <div id="adblock">
+      <h1>Adblocker</h1>
+      <div class="adblocker-stats">
+        <button class="buy-adblocker secondary">Buy Adblocker Subscription</button>
+        <h3 class="price">$100 + ₡10,000 per Spin</h3>
+        <h3>Blocks all popup ads</h3>
+      </div>
+    </div>
+
+    <div id="purchased-ads">
+      <h1>Purchased Ads</h1>
+      <div class="collectibles bought-ads">
+        <!-- Reserved for purchased-ads -->
+      </div>
+    </div>
+
     <div class="prize-log" id="prize-log">
       <h1>Prize Log</h1>
       <div class="prize-container">
@@ -500,15 +589,23 @@
 
     <div class="credits" id="credits">
       <h2>Credits</h2>
-      <p>Creator, Developer, Manager, Updater, Programmer - <em><b>Arpan Shah</b></em></p>
-      <p><small>Special Thanks to <em>Carson Montes</em> for providing background images.</small></p>
+      <p>Creator, Developer, Manager, Updater, Programmer, Organizer, Designer - <em><b>Arpan Shah</b></em></p>
+      <p><small>Special Thanks to <em>Carson Montes</em> for providing background images and for most achievement names.</small></p>
       <p><small>Special Thanks to <em>Mason Reynolds</em> for making the background music.</small></p>
       <p><small>Special Thanks to <em>Carter Ward</em> & <em>John Hagan</em> for suggesting some ideas.</small></p>
+      <p><small>Special Thanks to <em>Jacob Parrish</em> & <em>Victrin Ramsey</em> for naming some achievements.</small></p>
     </div>
 
     <div class="game-over-screen game-screen">
       <h1>GAME OVER</h1>
       <p>You ran out of money!</p>
+      <p>Refresh to try again or take a loan.</p>
+      <button class="secondary play-via-loan button-endscreen">Take a Loan</button>
+    </div>
+
+    <div class="game-over-loan-screen game-screen">
+      <h1>GAME OVER</h1>
+      <p>You failed to repay your loan!</p>
       <p>Refresh to try again.</p>
     </div>
 
@@ -517,8 +614,9 @@
       <p>You got all the upgrades!</p>
       <p>You finished the game!</p>
       <p>Refresh to Restart!</p>
-      <button class="secondary coninue-playing">Continue Playing</button>
+      <button class="secondary continue-playing button-endscreen">Continue Playing</button>
     </div>
+
     <script src="./script.js"></script>
   </body>
 </html>

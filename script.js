@@ -515,6 +515,7 @@ function gameOverCheck() {
       setTimeout(function () {
         alert("You're out of money I see");
         stopAutoMining();
+        deleteCookie('slotsTycoonSave');
       }, 500);
       setTimeout(function () {
         playSound(loseAudio);
@@ -525,6 +526,7 @@ function gameOverCheck() {
       setTimeout(function () {
         alert("You failed to repay your loan I see");
         stopAutoMining();
+        deleteCookie('slotsTycoonSave');
       }, 500);
       setTimeout(function () {
         playSound(loseAudio);
@@ -558,7 +560,7 @@ const animals = ["🐲", "😺", "🐶", "🐔", "🐮", "🐷", "🐰", "🐵"]
 let foodBought = ["💩"];
 const buttons = document.querySelectorAll('.items.food > div > button');
 const colectibles = document.querySelector('.collect-food');
-let foodsOwned = 0;
+let foodsOwned = 1;
 
 buttons.forEach((button, index) => {
   button.addEventListener('click', function() {
@@ -669,6 +671,9 @@ playViaLoanBtn.addEventListener('click', function() {
   loanRepaymentLabel.innerText = repayLoan;
   takeLoan.disabled = true;
   payLoan.disabled = false;
+  const gameData = getGameData();
+  const jsonData = JSON.stringify(gameData);
+  localStorage.setItem('slotsTycoonSave', jsonData);
   updateStats();
   gameOverCheck();
 });
@@ -1070,7 +1075,7 @@ const nftColectibles = document.querySelector('.collect-nft');
 
 let nftsBought = ["😁"];
 let nftShopBonus = 0;
-let nftsOwned = 0;
+let nftsOwned = 1;
 
 nftButtons.forEach((button, index) => {
   button.addEventListener('click', function() {
@@ -1082,7 +1087,7 @@ nftButtons.forEach((button, index) => {
       nftShopBonus += nftShopPrice[index] * 0.001
       updateCryptoPerClick();
       nftsOwned += 1;
-      if (nftsOwned == 17) {unlockAchievement(19);}
+      if (nftsOwned == 18) {unlockAchievement(19);}
       nftsBought.push(nftShopItems[index]);
       jpMotercycleGangCheck();
       secondPlaceCheck();
@@ -1473,10 +1478,8 @@ toggleAchievements.addEventListener('click', function() {
   playSound(click);
   if (achievementsBox.style.right === "50%") {
     achievementsBox.style.right = "-50vw";
-    achievementsBox.scrollIntoView({ behavior: "smooth" });
   } else {
     achievementsBox.style.right = "50%";
-    achievementsBox.scrollIntoView({ behavior: "smooth" });
   }
 });
 
@@ -1790,6 +1793,8 @@ const secretMessage = "You have found the secret message :O\nNow stop cheating a
 
 let saveGameToFile = document.querySelector('.save-file'); //saves a .json file to you computer
 let loadGameFromFile = document.querySelector('.load'); //loads a .json file from your computer
+let saveGame = document.querySelector('.save'); //saves a cookie with the game data
+let restartGame = document.querySelector('.restart'); //deletes all cookies and reloads website
 
 // Function to collect all game data for saving
 function getGameData() {
@@ -2189,9 +2194,6 @@ function updateGameUI() {
           button.disabled = true;
       }
   });
-  if (gameData && gameData.prizeLog) {
-    prizeLog.innerHTML = gameData.prizeLog;
-  }
   
   // Update car states
   if (bikeOwned) {
@@ -2338,3 +2340,81 @@ function updateGameUI() {
   // Check game state
   gameOverCheck();
 }
+
+// Cookie management functions
+function setCookie(name, value, days) {
+  const expires = new Date();
+  expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+  document.cookie = `${name}=${encodeURIComponent(value)};expires=${expires.toUTCString()};path=/`;
+}
+
+function getCookie(name) {
+  const nameEQ = `${name}=`;
+  const ca = document.cookie.split(';');
+  for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) === ' ') c = c.substring(1);
+      if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length));
+  }
+  return null;
+}
+
+function deleteCookie(name) {
+  setCookie(name, '', -1);
+}
+
+// Save game to cookie
+saveGame.addEventListener('click', function() {
+  try {
+      // Get game data
+      const gameData = getGameData();
+      const jsonData = JSON.stringify(gameData);
+      deleteCookie('slotsTycoonSave');
+      localStorage.setItem('slotsTycoonSave', jsonData);
+      
+      alert("Game saved successfully!");
+      playSound(upgradeSound);
+  } catch (error) {
+      console.error("Error saving game:", error);
+      alert("Error saving game: " + error.message);
+  }
+});
+
+// Restart game (delete save and refresh)
+restartGame.addEventListener('click', function() {
+  if (confirm("Are you sure you want to restart the game? All progress will be lost!")) {
+      // Delete the save data
+      deleteCookie('slotsTycoonSave');
+      localStorage.removeItem('slotsTycoonSave');
+      
+      // Refresh the page
+      playSound(loseAudio);
+      setTimeout(() => {
+          window.location.reload();
+      }, 500);
+  }
+});
+
+// Check for saved game on page load
+window.addEventListener('load', function() {
+  // Try localStorage first (more reliable for larger saves)
+  let savedGame = localStorage.getItem('slotsTycoonSave');
+  
+  // Fall back to cookies if localStorage is empty
+  if (!savedGame) {
+      savedGame = getCookie('slotsTycoonSave');
+  }
+  
+  if (savedGame) {
+      if (confirm("Would you like to load your saved game?")) {
+          try {
+              const gameData = JSON.parse(savedGame);
+              loadGameData(gameData);
+              console.log("Game loaded successfully!");
+          } catch (error) {
+              console.error("Error loading saved game:", error);
+              alert("Error loading saved game: " + error.message);
+          }
+      }
+  }
+});

@@ -27,5 +27,5 @@ Or at https://slots-tycoon.netlify.app <br/>
 9. Added loans if your low on money
 10. Added Scam Coin
 11. Balanced Slot Machine Payout
-12. Added a cheats menu
-Activate it by typing in "cheatsOn()" in the console.
+12. Added a cheats menu <br/>
+Activate it by typing in "cheatsOn()" in the console. <br/>

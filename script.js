@@ -533,7 +533,7 @@ function gameOverCheck() {
         repayLoanFailScreen.style.display = "flex";
         finsihedMessageShown = true;
       }, 1000);
-    } else if (upgradeSpinLevel == 15 && upgradeIncomeLevel == 15 && upgradeLuckLevel == 15 && foodsOwned == 17 && backgroundsOwned == 5) {
+    } else if (upgradeSpinLevel == 15 && upgradeIncomeLevel == 15 && upgradeLuckLevel == 15 && foodsOwned == 18 && backgroundsOwned == 5) {
       setTimeout(function () {
         alert("You've got all of the upgrades, foods, and backgrounds I see");
         unlockAchievement(1);
@@ -2418,3 +2418,4 @@ window.addEventListener('load', function() {
       }
   }
 });
+
